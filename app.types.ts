@@ -1,0 +1,14 @@
+export interface ICourse {
+  _id: String,
+  title: String,
+  description: String,
+  learning: String,
+  requirements: String,
+  level: String,
+  category: String,
+  language: String,
+  oldPrice: Number,
+  currentPrice: Number,
+  previewImage: String,
+  published: Boolean,
+}
