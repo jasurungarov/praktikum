@@ -11,7 +11,7 @@ async function Page({ params: { lng } }: LngParams) {
 		<>
 			<TopBar label='contacts' />
 			<iframe
-				src='https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d13862.031135909749!2d31.37855353790335!3d30.050683721199444!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14583db8b5b45af3%3A0xc70430c3420bd837!2sEl%20Mahallawy%20Hypermarket!5e0!3m2!1sru!2seg!4v1708407922577!5m2!1sru!2seg'
+				src='https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2067.564981138972!2d74.605031836283!3d42.8732992618102!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x389eb7c4b5aaaaab%3A0x79751aa41fde1080!2z0JjQvdGB0YLQuNGC0YPRgiDQuNC80LXQvdC4INCQ0YDQsNCx0LDQtdCy0LA!5e0!3m2!1sru!2skg!4v1769872411318!5m2!1sru!2skg'
 				loading='lazy'
 				className='h-96 w-full'
 			/>
@@ -28,11 +28,11 @@ async function Page({ params: { lng } }: LngParams) {
 
 						<div className='mt-12 flex items-center gap-3'>
 							<Mail className='size-4' />
-							<p className='text-sm'>info@sammi.ac</p>
+							<a href='mailto:info@ungarov.ac' className='text-sm hover:underline dark:hover:text-blue-300'>info@ungarov.ac</a>
 						</div>
 						<div className='mt-2 flex items-center gap-3'>
 							<Phone className='size-4' />
-							<p className='text-sm'>+98 02 296 4902</p>
+							<a href='tel:+98022964902' className='text-sm hover:underline dark:hover:text-blue-300'>+98 02 296 4902</a>
 						</div>
 					</div>
 

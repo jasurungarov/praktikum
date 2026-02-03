@@ -17,3 +17,33 @@ export const courseSchema = z.object({
 	oldPrice: z.string().min(0),
 	currentPrice: z.string().min(0),
 })
+
+export const courseFieldsSchema = z.object({
+	title: z.string().min(3),
+	slug: z.string().min(3),
+}) 
+
+export const descriptionSchema = z.object({
+	description: z.string().min(10),
+}) 
+
+export const informationSchema = z.object({
+	learning: z.string(),
+	requirements: z.string(),
+	tags: z.string().optional(),
+}) 
+
+export const selectFieldsSchema = z.object({
+	language: z.string(),
+	category: z.string(),
+	level: z.string(),
+})
+
+export const priceSchema = z.object({
+	oldPrice: z.string(),
+	currentPrice: z.string(),
+})
+
+export const previewImageSchema = z.object({
+	previewImage: z.string(),
+})

@@ -31,6 +31,7 @@ import { Dialog, DialogContent } from '../ui/dialog'
 import Image from 'next/image'
 import { useRouter } from 'next/navigation'
 import { UploadButton } from '@/lib/uploadthing'
+import { useUser } from '@clerk/nextjs'
 
 function CourseFieldsForm() {
 	const [isLoading, setIsLoading] = useState(false)
@@ -38,6 +39,7 @@ function CourseFieldsForm() {
 	const [open, setOpen] = useState(false)
 
 	const router = useRouter()
+	const {user} =  useUser()
 
 	const form = useForm<z.infer<typeof courseSchema>>({
 		resolver: zodResolver(courseSchema),
@@ -55,7 +57,7 @@ function CourseFieldsForm() {
 			oldPrice: +oldPrice,
 			currentPrice: +currentPrice,
 			previewImage,
-		})
+		}, user?.id as string)
 			.then(() => {
 				form.reset()
 				router.push('/en/instructor/my-courses')
@@ -312,20 +314,18 @@ function CourseFieldsForm() {
 					<div className='flex justify-end gap-4'>
 						<Button
 							type='button'
-							size={'lg'}
 							variant={'destructive'}
 							onClick={() => form.reset()}
 							disabled={isLoading}
 						>
 							Clear
 						</Button>
-						<Button type='submit' size={'lg'} disabled={isLoading}>
+						<Button type='submit'disabled={isLoading}>
 							Submit
 						</Button>
 						{previewImage && (
 							<Button
 								type='button'
-								size={'lg'}
 								variant={'outline'}
 								onClick={() => setOpen(true)}
 							>

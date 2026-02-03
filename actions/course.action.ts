@@ -5,34 +5,64 @@ import Course from '@/database/course.model'
 import { connectToDatabase } from '@/lib/mongoose'
 import { revalidatePath } from 'next/cache'
 import { ICreateCourse } from './types'
+import User from '@/database/user.model'
 
 
-export const createCourse = async (data: ICreateCourse) => {
+export const createCourse = async (data: ICreateCourse, clerkId: string) => {
   try {
     await connectToDatabase()
-    await Course.create(data)
+    const user = await User.findOne({ clerkId })
+    await Course.create({ ...data, instructor: user._id })
     revalidatePath('/en/instructor/my-courses')
   } catch (error) {
     throw new Error('Something went wrong while creating the course.')
   }
 }
 
-export const getCourses = async () => {
+export const getCourses = async (clerkId: string) => {
   try {
     await connectToDatabase()
-    const courses = await Course.find()
+    const user = await User.findOne({ clerkId })
+    const courses = await Course.find({ instructor: user._id })
     return courses as ICourse[]
   } catch (error) {
     throw new Error('Something went wrong while getting the courses.')
   }
 }
 
-// export const getCourseById = async (id: String) => {
-//   try {
-//     await connectToDatabase()
-//     const course = await Course.findById(id)
-//     return course
-//   } catch (error) {
-//     throw new Error('Something went wrong while fetching the course.')
-//   }
-// }
+export const getCourseById = async (id: String) => {
+  try {
+    await connectToDatabase()
+    const course = await Course.findById(id)
+    return course as ICourse
+  } catch (error) {
+    throw new Error('Something went wrong while getting course.')
+  }
+}
+
+export const updateCourse = async (
+  id: String, 
+  updateData: Partial<ICourse>,
+  path: string,
+) => {
+  try {
+    await connectToDatabase()
+    await Course.findByIdAndUpdate(id, updateData)
+    revalidatePath(path)
+  } catch (error) {
+    throw new Error('Something went wrong while updating course.')
+  }
+}
+
+export const deleteCourse = async (
+  id: String, 
+  path: string,
+) => {
+  try {
+    await connectToDatabase()
+    await Course.findByIdAndDelete(id)
+    revalidatePath(path)
+  } catch (error) {
+    throw new Error('Something went wrong while deleting course.')
+  }
+}

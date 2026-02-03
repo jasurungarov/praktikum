@@ -26,8 +26,8 @@ export async function generateStaticParams() {
 }
 
 export const metadata: Metadata = {
-	title: 'Startup Praktikum - Next.js',
-	description: "Startup Praktikum's Next.js project",
+	title: 'Startup Ungarov Academy - Next.js',
+	description: "Startup Ungarov Academy's Next.js project",
 	icons: { icon: '/logo.svg' },
 }
 

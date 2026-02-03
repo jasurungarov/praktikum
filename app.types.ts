@@ -11,4 +11,6 @@ export interface ICourse {
   currentPrice: Number,
   previewImage: String,
   published: Boolean,
+  slug: String,
+  tags: String,
 }
