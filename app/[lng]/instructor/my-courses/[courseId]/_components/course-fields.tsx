@@ -49,7 +49,7 @@ function CourseFields(course: ICourse) {
               <span className='font-space-grotesk font-bold text-muted-foreground'>
                 Slug:
               </span>
-              <span className='font-medium'>{course.slug ?? 'Not configured'}</span>
+              <span className='font-medium'>{course.slug}</span>
             </div>
           </div>
         )}
@@ -72,8 +72,8 @@ function Forms({course, onToggle}: FormsProps) {
   const form = useForm({
       resolver: zodResolver(courseFieldsSchema),
       defaultValues: {
-        title: course.title,
-        slug: course.slug,
+        title: course.title ?? "",
+        slug: course.slug ?? "",
       },
     })
 
