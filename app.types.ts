@@ -1,16 +1,16 @@
 export interface ICourse {
-  _id: String,
-  title: String,
-  description: String,
-  learning: String,
-  requirements: String,
-  level: String,
-  category: String,
-  language: String,
-  oldPrice: Number,
-  currentPrice: Number,
-  previewImage: String,
-  published: Boolean,
-  slug: String,
-  tags: String,
+  _id: string
+  title: string
+  description: string
+  learning: string
+  requirements: string
+  level: string
+  category: string
+  language: string
+  oldPrice: number
+  currentPrice: number
+  previewImage: string
+  published: boolean
+  slug: string
+  tags: string
 }
