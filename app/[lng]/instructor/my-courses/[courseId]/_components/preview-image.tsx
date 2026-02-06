@@ -28,7 +28,7 @@ function PreviewImage(course: ICourse) {
       <CardContent className='relative p-6'>
         <div className='flex items-center justify-between'>
           <span className='text-lg font-medium'>
-            Image
+            Replace Image
           </span>
           <Button size='icon' variant='ghost' onClick={onToggle}>
             {state ? <X/> : <Edit2 />}
