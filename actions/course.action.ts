@@ -1,11 +1,15 @@
 'use server'
 
-import { ICourse } from '@/app.types'
+import { ICourse, ILesson } from '@/app.types'
 import Course from '@/database/course.model'
-import { connectToDatabase } from '@/lib/mongoose'
-import { revalidatePath } from 'next/cache'
-import { GetCourseParams, ICreateCourse } from './types'
+import Lesson from '@/database/lesson.model'
+import Section from '@/database/section.model'
 import User from '@/database/user.model'
+import { connectToDatabase } from '@/lib/mongoose'
+import { calculateTotalDuration } from '@/lib/utils'
+import { revalidatePath } from 'next/cache'
+import { cache } from 'react'
+import { GetAllCoursesParams, GetCourseParams, ICreateCourse } from './types'
 
 
 export const createCourse = async (data: ICreateCourse, clerkId: string) => {
@@ -73,5 +77,136 @@ export const deleteCourse = async (
     revalidatePath(path)
   } catch (error) {
     throw new Error('Something went wrong while deleting course.')
+  }
+}   
+
+export const getFeaturedCourses = cache(async () => {
+	try {
+		await connectToDatabase()
+		const courses = await Course.find({ published: true })
+			.limit(6)
+			.sort({ createdAt: -1 })
+			.select('previewImage title slug oldPrice currentPrice instructor')
+			.populate({
+				path: 'instructor',
+				select: 'fullName picture',
+				model: User,
+			})
+
+		return courses
+	} catch (error) {
+		throw new Error('Something went wrong while getting featured courses!')
+	}
+})
+
+export const getDetailedCourse = cache(async (id: string) => {
+	try {
+		await connectToDatabase()
+
+		const course = await Course.findById(id)
+			.select(
+				'title description instructor previewImage oldPrice currentPrice learning requirements tags updatedAt level category language'
+			)
+			.populate({
+				path: 'instructor',
+				select: 'fullName picture',
+				model: User,
+			})
+
+		const sections = await Section.find({ course: id }).populate({
+			path: 'lessons',
+			model: Lesson,
+		})
+
+		const totalLessons: ILesson[] = sections
+			.map(section => section.lessons)
+			.flat()
+
+		const data = {
+			...course._doc,
+			totalLessons: totalLessons.length,
+			totalSections: sections.length,
+			totalDuration: calculateTotalDuration(totalLessons),
+		}
+
+		return data
+	} catch (error) {
+		throw new Error('Something went wrong while getting detailed course!')
+	}
+})
+
+export const getAllCourses = async (params: GetAllCoursesParams) => {
+  try {
+    await connectToDatabase()
+
+    const { searchQuery, filter, page = 1, pageSize = 6 } = params
+    const skipAmout = (page -1 ) * pageSize
+
+    const query: Record<string, any> = {}
+
+		if (searchQuery) {
+			query.$or = [{ title: { $regex: new RegExp(searchQuery, 'i') } }]
+		}
+
+    let sortOptions = {}
+
+    switch (filter) {
+      case 'newest':
+        sortOptions = { createdAt: -1 }
+        break
+      case 'popular':
+        sortOptions = { students: -1 }
+        break
+      case 'lowest-price':
+        sortOptions = { currentPrice: 1 }
+        break
+      case 'highest-price':
+        sortOptions = { currentPrice: -1 }
+        break
+      // eslint-disable-next-line default-case-last
+      default:
+        sortOptions = { createdAt: -1 }
+        break
+      case 'english':
+        query.language = 'english'
+        break
+      case 'uzbek':
+        query.language = 'uzbek'
+        break
+      case 'russian':
+        query.language = 'russian'
+        break
+      case 'turkish':
+        query.language = 'turkish'
+        break
+      case 'beginner':
+        query.level = 'beginner'
+        break
+      case 'intermediate':
+        query.level = 'intermediate'
+        break
+      case 'advanced':
+        query.level = 'advanced'
+        break
+    }
+
+    const courses = await Course.find(query)
+    .select('previewImage title slug _id oldPrice currentPrice instructor')
+    .populate({
+      path: 'instructor',
+      select: 'fullName picture',
+      model: User,
+    })
+    .skip(skipAmout)
+    .limit(pageSize)
+    .sort(sortOptions)
+
+    const totalCourses = await Course.find({ published: true }).countDocuments()
+    const allCourses = await Course.countDocuments(query)
+    const isNext = allCourses > skipAmout + courses.length
+
+    return { courses, isNext, totalCourses, allCourses }
+  } catch (error) {
+    throw new Error('Something went wrong while getting all courses!')
   }
 }

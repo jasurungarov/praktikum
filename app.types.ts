@@ -1,3 +1,4 @@
+
 export interface ICourse {
   _id: string
   title: string
@@ -13,6 +14,11 @@ export interface ICourse {
   published: boolean
   slug: string
   tags: string
+  instructor: IUser
+  updatedAt: string
+  totalLessons: number
+	totalSections: number
+	totalDuration: string
 }
 
 export interface ISection {
@@ -20,6 +26,7 @@ export interface ISection {
   title: string
   position: number
   course: string
+  lessons: ILesson[]
 }
 
 export interface ILesson {

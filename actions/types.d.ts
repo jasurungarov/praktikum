@@ -60,3 +60,10 @@ export interface GetCourseParams {
   page?: number
   pageSize?: number
 }
+
+export interface GetAllCoursesParams {
+  page?: number
+  pageSize?: number
+  searchQuery?: string
+  filter?: string
+}
