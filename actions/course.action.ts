@@ -201,11 +201,10 @@ export const getAllCourses = async (params: GetAllCoursesParams) => {
     .limit(pageSize)
     .sort(sortOptions)
 
-    const totalCourses = await Course.find({ published: true }).countDocuments()
-    const allCourses = await Course.countDocuments(query)
-    const isNext = allCourses > skipAmout + courses.length
+    const totalCourses = await Course.countDocuments(query)
+    const isNext = totalCourses > skipAmout + courses.length
 
-    return { courses, isNext, totalCourses, allCourses }
+    return { courses, isNext, totalCourses }
   } catch (error) {
     throw new Error('Something went wrong while getting all courses!')
   }
