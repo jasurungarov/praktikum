@@ -30,17 +30,24 @@ export interface ISection {
 }
 
 export interface ILesson {
-  _id: string
-  title: string
-  position: number
-  videoUrl: string
-  content: string
-  free: boolean
-  duration: {
-    hours: number
-    minutes: number
-    seconds: number
-  }
+	_id: string
+	title: string
+	position: number
+	videoUrl: string
+	content: string
+	free: boolean
+	duration: {
+		hours: number
+		minutes: number
+		seconds: number
+	}
+	userProgress: IUserProgress[]
+}
+
+export interface IUserProgress {
+	userId: string
+	lessonId: string
+	isCompleted: string
 }
 
 export interface IUser {

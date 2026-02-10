@@ -1,10 +1,11 @@
 'use server'
 
-import { connectToDatabase } from '@/lib/mongoose'
-import { ICreateLesson, ILessonFields, IUpdatePosition } from './types'
-import Section from '@/database/section.model'
 import Lesson from '@/database/lesson.model'
+import Section from '@/database/section.model'
+import UserProgress from '@/database/user-progress.model'
+import { connectToDatabase } from '@/lib/mongoose'
 import { revalidatePath } from 'next/cache'
+import { ICreateLesson, ILessonFields, IUpdatePosition } from './types'
 
 export const getLessons = async (section: string ) => {
   try {
@@ -14,6 +15,7 @@ export const getLessons = async (section: string ) => {
     throw new Error('Somethinf went wrong!')
   }
 }
+
 export const createLesson = async (params: ICreateLesson) => {
   try {
     await connectToDatabase()
@@ -55,7 +57,6 @@ export const createLesson = async (params: ICreateLesson) => {
     throw new Error('Something went erong!')
   }
 }
-
 
 export const deleteLesson = async (id: string, path: string) => {
 	try {
@@ -100,6 +101,55 @@ export const editLessonPosition = async (params: IUpdatePosition) => {
 		}
 
 		revalidatePath(path)
+	} catch (error) {
+		throw new Error('Something went wrong!')
+	}
+}
+
+export const completeLesson = async (
+	lessonId: string,
+	userId: string,
+	path: string
+) => {
+	try {
+		await connectToDatabase()
+		const userProgress = await UserProgress.findOne({ userId, lessonId })
+		if (userProgress) {
+			userProgress.isCompleted = true
+			await userProgress.save()
+		} else {
+			const newUserProgress = new UserProgress({
+				userId,
+				lessonId,
+				isCompleted: true,
+			})
+			const lesson = await Lesson.findById(lessonId)
+			lesson.userProgress.push(newUserProgress._id)
+			await lesson.save()
+			await newUserProgress.save()
+		}
+
+		revalidatePath(path)
+	} catch (error) {
+		throw new Error('Something went wrong!')
+	}
+}
+
+export const uncompleteLesson = async (lessonId: string, path: string) => {
+	try {
+		await connectToDatabase()
+		await UserProgress.findOneAndDelete({ lessonId })
+
+		revalidatePath(path)
+	} catch (error) {
+		throw new Error('Something went wrong!')
+	}
+}
+
+export const getLesson = async (id: string) => {
+	try {
+		await connectToDatabase()
+		return await Lesson.findById(id).select('title content videoUrl')
 	} catch (error) {
 		throw new Error('Something went wrong!')
 	}
