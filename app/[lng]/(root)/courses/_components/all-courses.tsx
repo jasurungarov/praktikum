@@ -32,86 +32,144 @@ function AllCourses({ result }: Props) {
 	const page = searchParams.get('page')
 	const { courses, isNext, totalCourses } = result
 
-	const onUpdateUrl = (values: string) => {
+	const onUpdateUrl = (key: string) => (value: string) => {
 		const newUrl = formUrlQuery({
 			params: searchParams.toString(),
-			key: 'filter',
-			value: values,
+			key,
+			value,
 		})
-
 		router.push(newUrl)
 	}
 
 	return (
-		<div className='container mx-auto mt-12 max-w-6xl'>
-			<div className='flex items-center justify-between max-md:flex-col max-md:items-start max-md:space-y-2'>
-				<h2 className='max-md:self-end'>
-					{t('result1')}{' '}
-					<span className='font-space-grotesk font-bold'>{totalCourses}</span>{' '}
-					{t('result2')}
-				</h2>
+		<section className='w-full py-8 md:py-12'>
+			<div className='container mx-auto max-w-6xl px-4 sm:px-6 lg:px-8'>
 
-				<div className='flex items-center gap-2'>
-					<p>{t('sortBy')}</p>
+				{/* Header — natija va filterlar */}
+				<div className='flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between'>
+					{/* Natija soni */}
+					<h2 className='text-sm text-muted-foreground sm:text-base'>
+						{t('result1')}{' '}
+						<span className='font-space-grotesk text-base font-bold text-foreground sm:text-lg'>
+							{totalCourses}
+						</span>{' '}
+						{t('result2')}
+					</h2>
 
-					<Select onValueChange={onUpdateUrl}>
-						<SelectTrigger className='w-[120px] bg-gradient-to-r from-secondary via-secondary to-background'>
-							<SelectValue placeholder={t('filter')} />
-						</SelectTrigger>
-						<SelectContent>
-							{filterCourses.map(item => (
-								<SelectItem key={item.name} value={item.name}>
-									{t(item.label)}
-								</SelectItem>
-							))}
-						</SelectContent>
-					</Select>
+					{/* Filterlar */}
+					<div className='flex flex-col gap-2 sm:flex-row sm:items-center'>
+						<p className='text-sm text-muted-foreground'>{t('sortBy')}</p>
 
-					<Select onValueChange={onUpdateUrl}>
-						<SelectTrigger className='w-[120px] bg-gradient-to-l from-secondary via-secondary to-background'>
-							<SelectValue placeholder={t('level')} />
-						</SelectTrigger>
-						<SelectContent>
-							{filterLevels.map(item => (
-								<SelectItem key={item.name} value={item.name}>
-									{t(item.label)}
-								</SelectItem>
-							))}
-						</SelectContent>
-					</Select>
+						{/* Mobile — 2 ustun grid */}
+						<div className='grid grid-cols-2 gap-2 sm:hidden'>
+							<Select onValueChange={onUpdateUrl('filter')}>
+								<SelectTrigger className='w-full bg-gradient-to-r from-secondary via-secondary to-background text-xs'>
+									<SelectValue placeholder={t('filter')} />
+								</SelectTrigger>
+								<SelectContent>
+									{filterCourses.map(item => (
+										<SelectItem key={item.name} value={item.name}>
+											{t(item.label)}
+										</SelectItem>
+									))}
+								</SelectContent>
+							</Select>
 
-					<Select onValueChange={onUpdateUrl}>
-						<SelectTrigger className='w-[120px] bg-gradient-to-l from-secondary via-secondary to-background'>
-							<SelectValue placeholder={t('language')} />
-						</SelectTrigger>
-						<SelectContent>
-							{courseLanguage.map(item => (
-								<SelectItem key={item} value={item} className='capitalize'>
-									{item}
-								</SelectItem>
-							))}
-						</SelectContent>
-					</Select>
+							<Select onValueChange={onUpdateUrl('level')}>
+								<SelectTrigger className='w-full bg-gradient-to-l from-secondary via-secondary to-background text-xs'>
+									<SelectValue placeholder={t('level')} />
+								</SelectTrigger>
+								<SelectContent>
+									{filterLevels.map(item => (
+										<SelectItem key={item.name} value={item.name}>
+											{t(item.label)}
+										</SelectItem>
+									))}
+								</SelectContent>
+							</Select>
+
+							<Select onValueChange={onUpdateUrl('language')}>
+								<SelectTrigger className='col-span-2 w-full bg-gradient-to-l from-secondary via-secondary to-background text-xs'>
+									<SelectValue placeholder={t('language')} />
+								</SelectTrigger>
+								<SelectContent>
+									{courseLanguage.map(item => (
+										<SelectItem key={item} value={item} className='capitalize'>
+											{item}
+										</SelectItem>
+									))}
+								</SelectContent>
+							</Select>
+						</div>
+
+						{/* Desktop — bir qatorda */}
+						<div className='hidden items-center gap-2 sm:flex'>
+							<Select onValueChange={onUpdateUrl('filter')}>
+								<SelectTrigger className='w-[130px] bg-gradient-to-r from-secondary via-secondary to-background'>
+									<SelectValue placeholder={t('filter')} />
+								</SelectTrigger>
+								<SelectContent>
+									{filterCourses.map(item => (
+										<SelectItem key={item.name} value={item.name}>
+											{t(item.label)}
+										</SelectItem>
+									))}
+								</SelectContent>
+							</Select>
+
+							<Select onValueChange={onUpdateUrl('level')}>
+								<SelectTrigger className='w-[130px] bg-gradient-to-l from-secondary via-secondary to-background'>
+									<SelectValue placeholder={t('level')} />
+								</SelectTrigger>
+								<SelectContent>
+									{filterLevels.map(item => (
+										<SelectItem key={item.name} value={item.name}>
+											{t(item.label)}
+										</SelectItem>
+									))}
+								</SelectContent>
+							</Select>
+
+							<Select onValueChange={onUpdateUrl('language')}>
+								<SelectTrigger className='w-[130px] bg-gradient-to-l from-secondary via-secondary to-background'>
+									<SelectValue placeholder={t('language')} />
+								</SelectTrigger>
+								<SelectContent>
+									{courseLanguage.map(item => (
+										<SelectItem key={item} value={item} className='capitalize'>
+											{item}
+										</SelectItem>
+									))}
+								</SelectContent>
+							</Select>
+						</div>
+					</div>
 				</div>
-			</div>
 
-			<div className='mt-2 grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3'>
-				{courses.map((course, index) => (
-					<CourseCard key={index} {...course} />
-				))}
-			</div>
+				{/* Kurslar grid */}
+				{courses.length > 0 ? (
+					<div className='mt-6 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3'>
+						{courses.map((course, index) => (
+							<CourseCard key={index} {...course} />
+						))}
+					</div>
+				) : (
+					<div className='mt-8'>
+						<NoResult
+							title="Ko'rsatish uchun hech qanday kurslar yo'q"
+							description="O'zingizga mos kurslarni toping! Hozirda sizning so'rovingizga to'g'ri keladigan kurslar bizda mavjud emas. Tez kunda qo'shiladi!"
+						/>
+					</div>
+				)}
 
-			{courses.length === 0 && (
-				<NoResult
-				title='Ko`rsatish uchun xech qanday kurslar yo`q'
-				description='O`zingizga mos kurslarni toping! Xozirda sizning so`rovingizga tog`ri keladigan kurslar bizda mavjud emas. Tez kunda qo`shiladi!'
-				/>
-			)}
-			
-			<div className='mt-6'>
-				<Pagination pageNumber={page ? +page : 1} isNext={isNext}/>
+				{/* Pagination */}
+				{courses.length > 0 && (
+					<div className='mt-8'>
+						<Pagination pageNumber={page ? +page : 1} isNext={isNext} />
+					</div>
+				)}
 			</div>
-		</div>
+		</section>
 	)
 }
 
