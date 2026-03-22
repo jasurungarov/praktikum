@@ -4,7 +4,7 @@ import UserBox from '@/components/shared/user-box'
 
 function Navbar() {
 	return (
-		<div className='fixed inset-0 z-50 flex h-[10vh] justify-between border-b bg-background px-2 lg:px-4'>
+		<div className='glass fixed inset-0 z-50 flex h-[10vh] justify-between border-b px-2 lg:px-4'>
 			<Logo />
 
 			<div className='flex items-center gap-4'>

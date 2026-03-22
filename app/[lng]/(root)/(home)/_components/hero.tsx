@@ -47,7 +47,7 @@ function Hero() {
 				/>
 			</div>
 
-			<div className='w-full bg-secondary'>
+			<div className='glass w-full'>
 				<Carousel
 					opts={{ align: 'start', loop: true }}
 					className='container mx-auto w-full max-w-6xl'

@@ -26,7 +26,7 @@ function Navbar() {
         </div>
         <ModeToggle/>
         <DropdownMenu>
-          <DropdownMenuTrigger>
+          <DropdownMenuTrigger asChild>
             <Button variant='outline' size='icon'>
               <MoreVertical/>
             </Button>

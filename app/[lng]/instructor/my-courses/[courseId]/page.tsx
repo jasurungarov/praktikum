@@ -29,6 +29,7 @@ async function Page({ params }: { params: { courseId: string } }) {
         <Actions {...course} />
       </div>
       <Separator className="my-3 bg-muted-foreground" />
+      
       <div className="mt-6 grid grid-cols-2 gap-4">
         <div className="flex flex-col space-y-2">
           <div className="flex items-center gap-2">
