@@ -1,3 +1,4 @@
+import ReviewModal from "@/components/modals/review.modal";
 import { ChildProps } from "@/types";
 import Navbar from "./_components/navbar";
 import Sidebar from "./_components/sidebar";
@@ -12,9 +13,12 @@ function Layout({ params: { courseId, lng }, children }: Props) {
       <div className="flex">
         <Sidebar courseId={courseId} lng={lng} />
         <section className="flex min-h-screen flex-1 flex-col px-4 pb-6 pt-24 max-md:pb-14 sm:px-14 lg:mt-4">
-          <div className="mx-auto w-full max-w-5xl lg:max-w-full">{children}</div>
+          <div className="mx-auto w-full max-w-5xl lg:max-w-full">
+            {children}
+          </div>
         </section>
       </div>
+      <ReviewModal />
     </div>
   );
 }

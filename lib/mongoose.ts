@@ -1,4 +1,7 @@
 import mongoose, { ConnectOptions } from 'mongoose'
+import dns from 'dns'
+
+dns.setServers(['8.8.8.8', '8.8.4.4']) // <-- YANGI QATOR
 
 let isConnected: boolean = false
 
@@ -21,7 +24,8 @@ export const connectToDatabase = async () => {
 
 		await mongoose.connect(process.env.MONGODB_URL, options)
 		isConnected = true
+		console.log('MongoDB connected') // <-- muvaffaqiyatni ko'rish uchun (ixtiyoriy)
 	} catch (error) {
-		console.log('MongoDB connection failed')
+		console.log('MongoDB connection failed', error)
 	}
 }

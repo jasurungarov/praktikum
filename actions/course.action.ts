@@ -3,15 +3,15 @@
 import { ICourse, ILesson } from '@/app.types'
 import Course from '@/database/course.model'
 import Lesson from '@/database/lesson.model'
+import Purchase from '@/database/purchase.model'
 import Section from '@/database/section.model'
+import UserProgress from '@/database/user-progress.model'
 import User from '@/database/user.model'
 import { connectToDatabase } from '@/lib/mongoose'
 import { calculateTotalDuration } from '@/lib/utils'
 import { revalidatePath } from 'next/cache'
 import { cache } from 'react'
 import { GetAllCoursesParams, GetCourseParams, ICreateCourse } from './types'
-import Purchase from '@/database/purchase.model'
-import UserProgress from '@/database/user-progress.model'
 
 
 export const createCourse = async (data: ICreateCourse, clerkId: string) => {
@@ -275,4 +275,42 @@ export const getDashboardCourse = async (clerkId: string, courseId: string) => {
 	} catch (error) {
 		throw new Error('Something went wrong while getting dashboard course!')
 	}
+}
+
+export const addFavouriteCourse = async (courseId: string, clerkId: string) => {
+try {
+  await connectToDatabase()
+  const isFavourite = await User.findOne({ clerkId, favouriteCourses: courseId })
+  if (isFavourite) {
+    throw new Error('Course is already in favourites')
+  }
+
+  const user = await User.findOne(
+    { clerkId }
+  )
+  await User.findByIdAndUpdate(user._id, {
+    $push: { favouriteCourses: courseId }
+  })
+} catch (error) {
+  throw new Error('Something went wrong while adding favourite course!')
+}
+}
+
+export const addArchiveCourse = async (courseId: string, clerkId: string) => {
+try {
+  await connectToDatabase()
+  const isArchive = await User.findOne({ clerkId, archiveCourses: courseId })
+  if (isArchive) {
+    throw new Error('Course is already in archive')
+  }
+
+  const user = await User.findOne(
+    { clerkId }
+  )
+  await User.findByIdAndUpdate(user._id, {
+    $push: { archiveCourses: courseId }
+  })
+} catch (error) {
+  throw new Error('Something went wrong while adding archive course!')
+}
 }
