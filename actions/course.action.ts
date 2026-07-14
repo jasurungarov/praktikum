@@ -39,7 +39,26 @@ export const getCourses = async (params: GetCourseParams) => {
     const totalCourses = await Course.find({ instructor: _id }).countDocuments()
     const isNext = totalCourses > skipAmout + courses.length
 
-    return { courses, isNext, totalCourses }
+    const allCourses = await Course.find({ instructor: _id })
+    .select('purchases currentPrice')
+    .populate({
+      path: 'purchases',
+      model: Purchase,
+      select: 'course',
+      populate: {
+        path: 'course',
+        model: Course,
+        select: 'currentPrice',
+      }
+    })
+
+    const totalStudents = allCourses 
+    .map(c => c.purchases.length)
+    .reduce((a, b) => a + b, 0)
+
+    const totalEarnings = allCourses.map(c => c.purchases).flat().map(p => p.course.currentPrice).reduce((a, b) => a + b, 0)
+
+    return { courses, isNext, totalCourses, totalEarnings, totalStudents }
   } catch (error) {
     throw new Error('Something went wrong while getting the courses.')
   }
