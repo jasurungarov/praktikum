@@ -3,6 +3,7 @@
 import { createReview, getReview, updateReview } from "@/actions/review.action";
 import { IReview } from "@/app.types";
 import { useReview } from "@/hooks/use-review";
+import useTranslate from "@/hooks/use-translate";
 import { reviewSchema } from "@/lib/validation";
 import { useAuth } from "@clerk/nextjs";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -30,6 +31,7 @@ export default function ReviewModal() {
   const { isOpen, onClose, isLoading, startLoading, stopLoading } = useReview();
   const { userId } = useAuth();
   const { courseId } = useParams();
+  const t = useTranslate();
 
   const form = useForm<z.infer<typeof reviewSchema>>({
     resolver: zodResolver(reviewSchema),
@@ -54,9 +56,9 @@ export default function ReviewModal() {
     promise.then(() => onClose()).finally(() => stopLoading());
 
     toast.promise(promise, {
-      loading: "Loading...",
-      success: "Review created successfully!",
-      error: "Error creating review.",
+      loading: t("loading"),
+      success: t("successfully"),
+      error: t("error"),
     });
   };
 
@@ -83,10 +85,10 @@ export default function ReviewModal() {
         <div className="flex flex-col items-center justify-center space-y-4">
           <div className="mt-4 text-xl font-medium">
             {review
-              ? "Fikringizni o'zgartirishingiz mumkin"
+              ? t("changeReview")
               : rating
-                ? "Nega bunday baho berdingiz?"
-                : "Ushbu kursni qanday baholaysiz?"}
+                ? t("whyReview")
+                : t("rateCourse")}
           </div>
 
           <ReactStars
@@ -108,7 +110,7 @@ export default function ReviewModal() {
                     <FormItem className="flex w-full flex-col">
                       <FormControl>
                         <Textarea
-                          placeholder="Ushbu kurs haqida qanday fikrdasiz? U sizga mos keldimi?"
+                          placeholder={t('reviewPlaceholder')}
                           className="h-36 resize-none border-none bg-secondary font-medium"
                           disabled={isLoading}
                           {...field}
@@ -124,7 +126,7 @@ export default function ReviewModal() {
                     type="submit"
                     disabled={isLoading}
                     className="font-space-grotesk font-bold">
-                    {review ? "O'zgartirish" : "Tasdiqlash"}
+                    {review ? t('change') : t('submit')}
                   </Button>
                 </div>
               </form>

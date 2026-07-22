@@ -4,7 +4,7 @@ import { enUS, ruRU, trTR } from '@clerk/localizations'
 import { uzUZ } from './uz-UZ'
 import qs from 'query-string'
 import { ILesson } from '@/app.types'
-
+import { enUS as en, uz, tr, ru } from 'date-fns/locale'
 
 export function cn(...inputs: ClassValue[]) {
 	return twMerge(clsx(inputs))
@@ -144,3 +144,9 @@ export const formatNumber = (num: number): string => {
   }).format(num);
 };
 
+export const getTimeLocale = (lng: string) => {
+	if (lng === 'en') return en
+	if (lng === 'ru') return ru
+	if (lng === 'tr') return tr
+	if (lng === 'uz') return uz
+}
