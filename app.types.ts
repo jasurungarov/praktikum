@@ -19,6 +19,9 @@ export interface ICourse {
   totalLessons: number
 	totalSections: number
 	totalDuration: string
+	rating: number
+	reviewCount: number
+	purchasedStudents: number
 }
 
 export interface ISection {

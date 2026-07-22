@@ -1,10 +1,9 @@
 "use client";
 
 import { getCoursesSections } from "@/actions/section.action";
-import { ICourse, ISection } from "@/app.types";
+import { ICourse, IReview, ISection } from "@/app.types";
 import SectionLoading from "@/components/shared/section-loading";
 import { Accordion } from "@/components/ui/accordion";
-import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import useTranslate from "@/hooks/use-translate";
 import {
@@ -17,18 +16,27 @@ import {
 } from "lucide-react";
 import { useEffect, useState } from "react";
 import SectionList from "./section-list";
+import { getCourseReviews } from '@/actions/review.action'
+import ReviewCard from '@/components/cards/review.card'
+import AllReviews from './all-reviews'
+
 
 function Overview(course: ICourse) {
   const [isLoading, setIsLoading] = useState(true);
   const [sections, setSections] = useState<ISection[]>([]);
+  const [reviews, setReviews] = useState<IReview[]>([])
 
   const t = useTranslate();
 
   useEffect(() => {
     const getData = async () => {
       try {
-        const res = await getCoursesSections(course._id);
-        setSections(res);
+        const [sections, reviews] = await Promise.all([
+					getCoursesSections(course._id),
+					getCourseReviews(course._id, 6),
+				])
+				setSections(sections)
+				setReviews(reviews)
         setIsLoading(false);
       } catch (error) {
         setIsLoading(false);
@@ -119,32 +127,30 @@ function Overview(course: ICourse) {
         </div>
       </div>
 
+      {reviews.length? (
       <div className="mt-8 flex flex-col pb-20">
         <div className="mt-6 flex items-center gap-1 font-space-grotesk text-xl">
           <Star className="fill-[#DD6B20] text-[#DD6B20]" />
           <div className="font-medium">
-            {t("reviewCourse")}: <span className="font-bold">4.5</span>
+            {t("reviewCourse")}: <span className="font-bold">{course.rating}</span>
           </div>
           <Dot />
           <div className="font-medium">
-            <span className="font-bold">20</span>
+            <span className="font-bold">{course.reviewCount}</span>
             {t("review")}
           </div>
         </div>
 
         <div className="mt-5 grid grid-cols-1 gap-2 lg:grid-cols-2">
-          {/* {reviews.map((review) => (
+          {reviews.map((review) => (
             <ReviewCard key={review._id} review={review} />
-          ))} */}
+          ))}
         </div>
 
-        <Button
-          size={"lg"}
-          rounded={"full"}
-          className="mx-auto mt-6 flex justify-center">
-          {t("viewAll")}
-        </Button>
+        {course.reviewCount > 6 && <AllReviews {...course} />}
+
       </div>
+      ) : null}
     </>
   );
 }
