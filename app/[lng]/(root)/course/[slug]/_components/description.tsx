@@ -1,11 +1,10 @@
 "use client";
 
-import { purchaseCourse } from "@/actions/course.action";
 import { ICourse } from "@/app.types";
-import FillLoading from '@/components/shared/fill-loading'
 import { Button } from "@/components/ui/button";
+import { useCart } from '@/hooks/use-cart'
 import useTranslate from "@/hooks/use-translate";
-import { useAuth } from "@clerk/nextjs";
+// import { useAuth } from "@clerk/nextjs";
 import {
   BarChart2,
   Clock,
@@ -13,31 +12,37 @@ import {
   Languages,
   MonitorPlay,
 } from "lucide-react";
-import { useParams, useRouter } from "next/navigation";
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { BiCategory } from "react-icons/bi";
 import { GrCertificate } from "react-icons/gr";
-import { toast } from "sonner";
 
 function Description(course: ICourse) {
   const [isLoading, setIsLoading] = useState(false);
-  const { userId } = useAuth();
+
+  // const { userId } = useAuth();
+
   const t = useTranslate();
-  const { lng } = useParams();
   const router = useRouter();
+  const { addToCart } = useCart()
 
-  const onPurchase = async () => {
-    setIsLoading(true);
-    const promise = purchaseCourse(course._id, userId!)
-      .then(() => router.push(`/${lng}/dashboard/${course._id}`))
-      .catch(() => setIsLoading(false));
+  const onCart = () => {
+    setIsLoading(true)
+    addToCart(course)
+		router.push('/shopping/cart')
+  }
+  // const onPurchase = async () => {
+  //   setIsLoading(true);
+  //   const promise = purchaseCourse(course._id, userId!)
+  //     .then(() => router.push(`/${lng}/dashboard/${course._id}`))
+  //     .catch(() => setIsLoading(false));
 
-    toast.promise(promise, {
-      loading: t("loading"),
-      success: t("successfully"),
-      error: t("error"),
-    });
-  };
+  //   toast.promise(promise, {
+  //     loading: t("loading"),
+  //     success: t("successfully"),
+  //     error: t("error"),
+  //   });
+  // };
 
   return (
     <div className="rounded-md border bg-secondary/50 p-4 shadow-lg dark:shadow-white/20 lg:sticky lg:top-24 lg:p-6">
@@ -56,17 +61,22 @@ function Description(course: ICourse) {
         </div>
       </div>
 
-      <Button size={"lg"} className="mt-4 w-full font-bold">
-        {t("addToCart")}
-      </Button>
+      <Button
+				size={'lg'}
+				className='relative mt-2 w-full font-bold'
+				onClick={onCart}
+				disabled={isLoading}
+			>
+				{t('buyNow')}
+			</Button>
+
       <Button
         size={"lg"}
         className="relative mt-2 w-full font-bold"
         variant={"outline"}
-        onClick={onPurchase}
+        onClick={onCart}
 				disabled={isLoading}>
-					{isLoading && <FillLoading/>}
-        {t("buyNow")}
+        {t('addWishlist')}
       </Button>
 
       <p className="my-3 text-center text-sm text-muted-foreground">
