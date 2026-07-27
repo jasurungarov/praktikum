@@ -1,5 +1,5 @@
-// C:/Projects/startup.sammi.ac/[lng]/(root)/courses/[slug]/page.tsx
-import { getDetailedCourse, getFeaturedCourses } from "@/actions/course.action";
+
+import { getDetailedCourse, getFeaturedCourses, getIsPurchase } from "@/actions/course.action";
 import { ICourse } from "@/app.types";
 import CourseCard from "@/components/cards/course.card";
 import TopBar from "@/components/shared/top-bar";
@@ -15,6 +15,7 @@ import { translation } from "@/i18n/server";
 import Description from "./_components/description";
 import Hero from "./_components/hero";
 import Overview from "./_components/overview";
+import { auth } from '@clerk/nextjs'
 
 interface Props {
   params: {
@@ -26,10 +27,15 @@ interface Props {
 async function Page({ params: { lng, slug } }: Props) {
   const { t } = await translation(lng);
 
+  const { userId } = auth()
+
   const courseJSON = await getDetailedCourse(slug);
   const coursesJSON = await getFeaturedCourses();
+  const isPurchase = await getIsPurchase(userId!, slug);
+
   const course = JSON.parse(JSON.stringify(courseJSON));
   const courses = JSON.parse(JSON.stringify(coursesJSON));
+
   return (
     <>
       <TopBar label="allCourses" extra='React JS'/>
@@ -41,7 +47,7 @@ async function Page({ params: { lng, slug } }: Props) {
             <Overview {...course} />
           </div>
           <div className="col-span-1 max-lg:col-span-3">
-            <Description {...course} />
+            <Description course={course} isPurchase={isPurchase} />
           </div>
         </div>
 
@@ -57,7 +63,7 @@ async function Page({ params: { lng, slug } }: Props) {
               <CarouselItem
                 key={course.title}
                 className="md:basis-1/2 lg:basis-1/3">
-                <CourseCard {...course} />
+                <CourseCard {...course}/>
               </CarouselItem>
             ))}
           </CarouselContent>

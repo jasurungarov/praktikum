@@ -2,7 +2,7 @@
 
 import { ICourse } from "@/app.types";
 import { Button } from "@/components/ui/button";
-import { useCart } from '@/hooks/use-cart'
+import { useCart } from "@/hooks/use-cart";
 import useTranslate from "@/hooks/use-translate";
 // import { useAuth } from "@clerk/nextjs";
 import {
@@ -12,37 +12,31 @@ import {
   Languages,
   MonitorPlay,
 } from "lucide-react";
+import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { BiCategory } from "react-icons/bi";
 import { GrCertificate } from "react-icons/gr";
 
-function Description(course: ICourse) {
+interface Props {
+  course: ICourse;
+  isPurchase: boolean;
+}
+
+function Description({ course, isPurchase }: Props) {
   const [isLoading, setIsLoading] = useState(false);
 
   // const { userId } = useAuth();
 
   const t = useTranslate();
   const router = useRouter();
-  const { addToCart } = useCart()
+  const { addToCart } = useCart();
 
   const onCart = () => {
-    setIsLoading(true)
-    addToCart(course)
-		router.push('/shopping/cart')
-  }
-  // const onPurchase = async () => {
-  //   setIsLoading(true);
-  //   const promise = purchaseCourse(course._id, userId!)
-  //     .then(() => router.push(`/${lng}/dashboard/${course._id}`))
-  //     .catch(() => setIsLoading(false));
-
-  //   toast.promise(promise, {
-  //     loading: t("loading"),
-  //     success: t("successfully"),
-  //     error: t("error"),
-  //   });
-  // };
+    setIsLoading(true);
+    addToCart(course);
+    router.push("/shopping/cart");
+  };
 
   return (
     <div className="rounded-md border bg-secondary/50 p-4 shadow-lg dark:shadow-white/20 lg:sticky lg:top-24 lg:p-6">
@@ -61,22 +55,27 @@ function Description(course: ICourse) {
         </div>
       </div>
 
-      <Button
-				size={'lg'}
-				className='relative mt-2 w-full font-bold'
-				onClick={onCart}
-				disabled={isLoading}
-			>
-				{t('buyNow')}
-			</Button>
+      {isPurchase ? (
+        <Button size={"lg"} className="relative mt-2 w-full font-bold" asChild>
+          <Link href={`/dashboard/${course._id}`}>{t("toLesson")}</Link>
+        </Button>
+      ) : (
+        <Button
+          size={"lg"}
+          className="relative mt-2 w-full font-bold"
+          onClick={onCart}
+          disabled={isLoading}>
+          {t("buyNow")}
+        </Button>
+      )}
 
       <Button
         size={"lg"}
         className="relative mt-2 w-full font-bold"
         variant={"outline"}
         onClick={onCart}
-				disabled={isLoading}>
-        {t('addWishlist')}
+        disabled={isLoading}>
+        {t("addWishlist")}
       </Button>
 
       <p className="my-3 text-center text-sm text-muted-foreground">

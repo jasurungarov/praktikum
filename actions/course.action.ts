@@ -4,6 +4,7 @@ import { ICourse, ILesson } from '@/app.types'
 import Course from '@/database/course.model'
 import Lesson from '@/database/lesson.model'
 import Purchase from '@/database/purchase.model'
+import Review from '@/database/review.model'
 import Section from '@/database/section.model'
 import UserProgress from '@/database/user-progress.model'
 import User from '@/database/user.model'
@@ -12,7 +13,6 @@ import { calculateTotalDuration } from '@/lib/utils'
 import { revalidatePath } from 'next/cache'
 import { cache } from 'react'
 import { GetAllCoursesParams, GetCourseParams, ICreateCourse } from './types'
-import Review from '@/database/review.model'
 
 
 export const createCourse = async (data: ICreateCourse, clerkId: string) => {
@@ -348,4 +348,19 @@ try {
 } catch (error) {
   throw new Error('Something went wrong while adding archive course!')
 }
+}
+
+export const getIsPurchase = async (clerkId: string, courseId: string) => {
+	try {
+		await connectToDatabase()
+		const user = await User.findOne({ clerkId })
+		const isPurchased = await Purchase.findOne({
+			user: user._id,
+			course: courseId,
+		})
+
+		return !!isPurchased
+	} catch (error) {
+		throw new Error('Something went wrong while getting purchased courses!')
+	}
 }
