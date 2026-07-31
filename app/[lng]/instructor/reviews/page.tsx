@@ -4,14 +4,14 @@ import InstructorReviewCard from "@/components/cards/instructor-review.card";
 import Pagination from "@/components/shared/pagination";
 import { Separator } from "@/components/ui/separator";
 import { auth } from "@clerk/nextjs";
-import Header from "../_components/header";
+import Header from "../../../../components/shared/header";
 
 async function Page({ searchParams }: SearchParamsProps) {
-  const { userId } = auth()
+  const { userId } = auth();
 
-	const page = searchParams.page ? +searchParams.page : 1
+  const page = searchParams.page ? +searchParams.page : 1;
 
-	const result = await getReviews({ clerkId: userId!, page, pageSize: 6 })
+  const result = await getReviews({ clerkId: userId!, page, pageSize: 6 });
 
   return (
     <>

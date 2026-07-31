@@ -4,7 +4,7 @@ import { ICourse } from "@/app.types";
 import { Button } from "@/components/ui/button";
 import { useCart } from "@/hooks/use-cart";
 import useTranslate from "@/hooks/use-translate";
-// import { useAuth } from "@clerk/nextjs";
+import { useAuth } from "@clerk/nextjs";
 import {
   BarChart2,
   Clock,
@@ -17,6 +17,8 @@ import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { BiCategory } from "react-icons/bi";
 import { GrCertificate } from "react-icons/gr";
+import { toast } from 'sonner'
+import { addWishlistCourse } from '@/actions/course.action'
 
 interface Props {
   course: ICourse;
@@ -26,7 +28,7 @@ interface Props {
 function Description({ course, isPurchase }: Props) {
   const [isLoading, setIsLoading] = useState(false);
 
-  // const { userId } = useAuth();
+  const { userId } = useAuth();
 
   const t = useTranslate();
   const router = useRouter();
@@ -37,6 +39,21 @@ function Description({ course, isPurchase }: Props) {
     addToCart(course);
     router.push("/shopping/cart");
   };
+
+  const onAdd = () => {
+		if (!userId) return toast.error('Please Sign Up!')
+		setIsLoading(true)
+
+		const promise = addWishlistCourse(course._id, userId!).finally(() =>
+			setIsLoading(false)
+		)
+
+		toast.promise(promise, {
+			loading: t('loading'),
+			success: t('successfully'),
+			error: `${t('alreadyAdded')} Whishlist!`,
+		})
+	}
 
   return (
     <div className="rounded-md border bg-secondary/50 p-4 shadow-lg dark:shadow-white/20 lg:sticky lg:top-24 lg:p-6">
@@ -73,7 +90,7 @@ function Description({ course, isPurchase }: Props) {
         size={"lg"}
         className="relative mt-2 w-full font-bold"
         variant={"outline"}
-        onClick={onCart}
+        onClick={onAdd}
         disabled={isLoading}>
         {t("addWishlist")}
       </Button>
