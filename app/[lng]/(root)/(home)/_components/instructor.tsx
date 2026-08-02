@@ -32,7 +32,7 @@ function Instructor() {
 
 			<div className='mt-6 grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-4'>
 				{instructors.map(item => (
-					<InstructorCard key={item.name} {...item} />
+					<InstructorCard key={item.name} instructor={item as any} />
 				))}
 			</div>
 
