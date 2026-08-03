@@ -6,6 +6,7 @@ import {
   instructorNavLinks,
   profileNavLinks,
 } from "@/constants";
+import useTranslate from "@/hooks/use-translate";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
@@ -14,6 +15,7 @@ interface Props {
 }
 function Sidebar({ page }: Props) {
   const pathname = usePathname();
+  const t = useTranslate();
 
   const getNavLinks = () => {
     if (page === "admin") {
@@ -37,7 +39,7 @@ function Sidebar({ page }: Props) {
                   pathname.slice(3) === item.route ? "secondary" : "ghost"
                 }>
                 <item.icon className="size-5 text-muted-foreground" />
-                <span>{item.label}</span>
+                <span>{t(item.label)}</span>
               </Button>
             </Link>
           ))}
