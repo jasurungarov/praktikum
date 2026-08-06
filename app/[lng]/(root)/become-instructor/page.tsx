@@ -6,8 +6,8 @@ function Page() {
   return (
     <>
       <TopBar
-        label="Become an Instructor"
-        description="Teach what you love. Reach millions of students around the world. We provide the tools and skills to teach what you love."
+        label='becomeInstructor'
+				description='becomeInstructorDescription'
       />
 
       <div className="container mx-auto mt-12 min-h-[50vh] max-w-6xl">

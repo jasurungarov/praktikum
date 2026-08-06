@@ -1,17 +1,23 @@
 import { getCourses } from "@/actions/course.action";
 import { getReviews } from "@/actions/review.action";
+import { getRole } from "@/actions/user.action";
 import InstructorCourseCard from "@/components/cards/instructor-course.card";
 import ReviewCard from "@/components/cards/review.card";
 import StatisticsCard from "@/components/cards/statistics.card";
 import { formatNumber } from "@/lib/utils";
 import { auth } from "@clerk/nextjs";
 import { MessageSquare, MonitorPlay } from "lucide-react";
+import { redirect } from "next/navigation";
 import { GrMoney } from "react-icons/gr";
 import { PiStudent } from "react-icons/pi";
 import Header from "../../../../components/shared/header";
 
 async function Page() {
   const { userId } = auth();
+  const user = await getRole(userId!);
+
+  if (user.role !== "instructor") return redirect("/");
+
   const result = await getCourses({ clerkId: userId! });
   const { reviews, totalReviews } = await getReviews({ clerkId: userId! });
 
@@ -52,7 +58,10 @@ async function Page() {
 
       <div className="mt-4 grid grid-cols-3 gap-4">
         {result.courses.map((course) => (
-          <InstructorCourseCard key={course.title} course={course} />
+          <InstructorCourseCard
+            key={course.title}
+            course={JSON.parse(JSON.stringify(course))}
+          />
         ))}
       </div>
 
