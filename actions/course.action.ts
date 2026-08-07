@@ -36,7 +36,11 @@ export const getCourses = async (params: GetCourseParams) => {
     const courses = await Course.find({ instructor: _id })
     .skip(skipAmout)
     .limit(pageSize)
-		.populate({ path: 'instructor', select: 'fullName picture', model: User })
+		.populate({
+				path: 'instructor',
+				select: 'fullName picture clerkId',
+				model: User,
+		})
 
     const totalCourses = await Course.find({ instructor: _id }).countDocuments()
     const isNext = totalCourses > skipAmout + courses.length
@@ -112,7 +116,7 @@ export const getFeaturedCourses = cache(async () => {
 			.select('previewImage title slug oldPrice currentPrice instructor')
 			.populate({
 				path: 'instructor',
-				select: 'fullName picture',
+				select: 'fullName picture clerkId',
 				model: User,
 			})
 
@@ -132,7 +136,7 @@ export const getDetailedCourse = cache(async (id: string) => {
 			)
 			.populate({
 				path: 'instructor',
-				select: 'fullName picture',
+				select: 'fullName picture clerkId',
 				model: User,
 			})
 
@@ -232,7 +236,7 @@ export const getAllCourses = async (params: GetAllCoursesParams) => {
     .select('previewImage title slug _id oldPrice currentPrice instructor')
     .populate({
       path: 'instructor',
-      select: 'fullName picture',
+      select: 'fullName picture clerkId',
       model: User,
     })
     .skip(skipAmout)
@@ -457,7 +461,7 @@ export const getWishlist = async (clerkId: string) => {
 			.select('previewImage title slug oldPrice currentPrice instructor')
 			.populate({
 				path: 'instructor',
-				select: 'fullName picture',
+				select: 'fullName picture clerkId',
 				model: User,
 			})
 
@@ -479,8 +483,11 @@ export const getAdminCourses = async (params: GetPaginationParams) => {
 			.limit(pageSize)
 			.sort({ createdAt: -1 })
 			.populate('instructor previewImage title')
-			.populate({ path: 'instructor', select: 'fullName picture', model: User })
-
+			.populate({
+				path: 'instructor',
+				select: 'fullName picture clerkId',
+				model: User,
+			})
 		const totalCourses = await Course.countDocuments()
 		const isNext = totalCourses > skipAmount + courses.length
 

@@ -15,6 +15,7 @@ import Link from "next/link";
 import { useParams, usePathname } from "next/navigation";
 import GlobalSearch from "./global-search";
 import Mobile from "./mobile";
+import Notification from '@/components/shared/notification'
 
 function Navbar() {
   const t = useTranslate();
@@ -47,6 +48,7 @@ function Navbar() {
             <div className="hidden gap-1 md:flex">
               <GlobalSearch />
               <LanguageDropdown />
+              <Notification />
               <Button
                 size={"icon"}
                 variant={cartsLength() ? "secondary" : "ghost"}

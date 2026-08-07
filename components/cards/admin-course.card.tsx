@@ -5,8 +5,42 @@ import Image from "next/image";
 import { Button } from "../ui/button";
 import { Card, CardContent } from "../ui/card";
 import { Separator } from "../ui/separator";
+import { usePathname } from 'next/navigation'
+import { updateCourse } from '@/actions/course.action'
+import { sendNotification } from '@/actions/notification.action'
+import { toast } from 'sonner'
+
 
 function AdminCourseCard({ course }: { course: ICourse }) {
+  const pathname = usePathname()
+
+	const onToggleStatus = () => {
+		let upd
+		let not
+
+		if (course.published) {
+			upd = updateCourse(course._id, { published: false }, pathname)
+			not = sendNotification(
+				course.instructor.clerkId,
+				'messageCourseUnpublished'
+			)
+		} else {
+			upd = updateCourse(course._id, { published: true }, pathname)
+			not = sendNotification(
+				course.instructor.clerkId,
+				'messageCoursePublished'
+			)
+		}
+
+		const promise = Promise.all([upd, not])
+
+		toast.promise(promise, {
+			loading: 'Loading...',
+			success: 'Successfully updated!',
+			error: 'Something went wrong!',
+		})
+	}
+
   return (
     <Card className="w-full">
       <CardContent className="relative h-56 w-full">
@@ -42,7 +76,9 @@ function AdminCourseCard({ course }: { course: ICourse }) {
             className="w-fit font-space-grotesk font-bold"
             rounded={"full"}
             size={"sm"}
-            variant={course.published ? "destructive" : "default"}>
+            variant={course.published ? "destructive" : "default"}
+            onClick={onToggleStatus}
+            >
             {course.published ? "Unpublish" : "Publish"}
           </Button>
         </div>

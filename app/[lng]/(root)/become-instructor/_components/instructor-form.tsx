@@ -1,10 +1,12 @@
 "use client";
 
+import { sendNotification } from "@/actions/notification.action";
 import { updateUser } from "@/actions/user.action";
 import FillLoading from "@/components/shared/fill-loading";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
+import useTranslate from "@/hooks/use-translate";
 import {
   basicInstructorSchema,
   bioSchema,
@@ -18,7 +20,6 @@ import { z } from "zod";
 import FirstForm from "./first-form";
 import SecondForm from "./second-form";
 import ThirdForm from "./third-form";
-import useTranslate from '@/hooks/use-translate'
 
 function InstructorForm() {
   const [progress, setProgress] = useState(33);
@@ -27,7 +28,7 @@ function InstructorForm() {
 
   const { userId } = useAuth();
   const t = useTranslate();
-  
+
   const firstForm = () => {
     const onSubmit = async (values: z.infer<typeof basicInstructorSchema>) => {
       setLoading(true);
@@ -44,10 +45,10 @@ function InstructorForm() {
     return (
       <>
         <h2 className="font-space-grotesk text-xl font-bold">
-          {t('basicInformation')}
+          {t("basicInformation")}
         </h2>
         <p className="text-xs text-muted-foreground">
-          {t('basicInformationDescription')}
+          {t("basicInformationDescription")}
         </p>
 
         <FirstForm onHandler={onSubmit} />
@@ -69,9 +70,11 @@ function InstructorForm() {
 
     return (
       <>
-        <h2 className="font-space-grotesk text-xl font-bold">{t('socialMedia')}</h2>
+        <h2 className="font-space-grotesk text-xl font-bold">
+          {t("socialMedia")}
+        </h2>
         <p className="text-xs text-muted-foreground">
-          {t('basicInformationDescription')}
+          {t("basicInformationDescription")}
         </p>
 
         <SecondForm onHandler={onSubmit} />
@@ -83,21 +86,25 @@ function InstructorForm() {
     const onSubmit = async (values: z.infer<typeof bioSchema>) => {
       setLoading(true);
 
-      return updateUser({
+      const upd = updateUser({
         clerkId: userId!,
         updatedData: { ...values, approvedInstructor: true },
       })
         .then(() => setStep(4))
         .finally(() => setLoading(false));
+
+      const not = sendNotification(userId!, "messageInstructorApproved");
+
+      return Promise.all([upd, not]);
     };
 
     return (
       <>
         <h2 className="font-space-grotesk text-xl font-bold">
-          {t('bioAndProfile')}
+          {t("bioAndProfile")}
         </h2>
         <p className="text-xs text-muted-foreground">
-          {t('basicInformationDescription')}
+          {t("basicInformationDescription")}
         </p>
 
         <ThirdForm onHandler={onSubmit} />
@@ -116,17 +123,17 @@ function InstructorForm() {
           className="text-center"
         />
         <h1 className="font-space-grotesk text-xl font-bold">
-          {t('thanksSubmission')}
+          {t("thanksSubmission")}
         </h1>
         <p className="text-center text-xs text-muted-foreground">
-          {t('thanksSubmissionDescription1')}
+          {t("thanksSubmissionDescription1")}
         </p>
         <p className="text-center text-xs text-muted-foreground">
-          {t('thanksSubmissionDescription2')}
+          {t("thanksSubmissionDescription2")}
         </p>
         <Button className="mt-2" asChild>
           <Link href={"/profile/notifications"}>
-            <span>{t('notifications')}</span>
+            <span>{t("notifications")}</span>
           </Link>
         </Button>
       </div>
