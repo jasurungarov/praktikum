@@ -16,6 +16,25 @@ import Description from "./_components/description";
 import Hero from "./_components/hero";
 import Overview from "./_components/overview";
 import { auth } from '@clerk/nextjs'
+import { Metadata, ResolvingMetadata } from 'next'
+
+export async function generateMetadata(
+	{ params }: { params: { slug: string } },
+	parent: ResolvingMetadata
+): Promise<Metadata> {
+	const course = await getDetailedCourse(params.slug!)
+
+	return {
+		title: course.title,
+		description: course.description,
+		openGraph: {
+			images: course.previewImage,
+			title: course.title,
+			description: course.description,
+		},
+		keywords: course.tags,
+	}
+}
 
 interface Props {
   params: {
@@ -31,7 +50,11 @@ async function Page({ params: { lng, slug } }: Props) {
 
   const courseJSON = await getDetailedCourse(slug);
   const coursesJSON = await getFeaturedCourses();
-  const isPurchase = await getIsPurchase(userId!, slug);
+  let isPurchase
+
+	if (userId) {
+		isPurchase = await getIsPurchase(userId!, slug)
+	}
 
   const course = JSON.parse(JSON.stringify(courseJSON));
   const courses = JSON.parse(JSON.stringify(coursesJSON));
@@ -47,7 +70,7 @@ async function Page({ params: { lng, slug } }: Props) {
             <Overview {...course} />
           </div>
           <div className="col-span-1 max-lg:col-span-3">
-            <Description course={course} isPurchase={isPurchase} />
+            <Description course={course} isPurchase={!!isPurchase} />
           </div>
         </div>
 

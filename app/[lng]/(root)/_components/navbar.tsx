@@ -9,7 +9,7 @@ import { navLinks } from "@/constants";
 import { useCart } from "@/hooks/use-cart";
 import useTranslate from "@/hooks/use-translate";
 import { cn } from "@/lib/utils";
-import { SignInButton, SignUpButton, SignedIn, SignedOut } from "@clerk/nextjs";
+import { SignInButton, SignedIn, SignedOut } from "@clerk/nextjs";
 import { LogIn, ShoppingCart } from "lucide-react";
 import Link from "next/link";
 import { useParams, usePathname } from "next/navigation";
@@ -54,7 +54,7 @@ function Navbar() {
                 variant={cartsLength() ? "secondary" : "ghost"}
                 asChild
                 className="relative">
-                <Link href={"/shopping/cart"}>
+                <Link href={"/shopping/cart"} aria-label='shopping-cart'>
                   <ShoppingCart />
                   {cartsLength() ? (
                     <div className="absolute -right-2 -top-2 flex size-6 items-center justify-center rounded-full bg-destructive">
@@ -72,19 +72,10 @@ function Navbar() {
           </SignedIn>
           <SignedOut>
             <SignInButton mode="modal">
-              <Button
-                variant={"ghost"}
-                size={"lg"}
-                rounded={"full"}
-                className="hidden md:flex">
+             <Button size={'lg'} rounded={'full'} className='hidden md:flex'>
                 {t("logIn")}
               </Button>
             </SignInButton>
-            <SignUpButton mode="modal">
-              <Button size={"lg"} rounded={"full"} className="hidden md:flex">
-                {t("signUp")}
-              </Button>
-            </SignUpButton>
             <SignInButton mode="modal">
               <Button size={"icon"} variant={"ghost"} className="md:hidden">
                 <LogIn />

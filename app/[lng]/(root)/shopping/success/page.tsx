@@ -5,8 +5,14 @@ import { Button } from '@/components/ui/button'
 import { translation } from '@/i18n/server'
 import { format } from 'date-fns'
 import { GaugeCircle } from 'lucide-react'
+import { Metadata } from 'next'
 import Image from 'next/image'
 import Link from 'next/link'
+
+export const metadata: Metadata = {
+	title: 'Ungarov Academy | Muvaqqiyatli toʻlov',
+	description: 'Sotib olish muvaffaqiyatli amalga oshirildi!',
+}
 
 interface Props extends SearchParamsProps {
 	params: { lng: string }
