@@ -212,5 +212,7 @@
 	"messageCoursePurchased": "Congratulations! You have successfully purchased the course. Check your dashboard for more details.",
 	"messageCourseSold": "Congratulations! Your course has been sold. Check your dashboard for more details.",
 	"messageSendReview": "Thank you for your review. It will be published shortly.",
-	"messageUpdateReview": "Your review has been updated."
+	"messageUpdateReview": "Your review has been updated.",
+	"checking" : "Checking",
+	"waitingForRefresh" : "Please wait while we refresh your data"
 }

@@ -67,14 +67,17 @@ export const getReviews = async (params: GetReviewParams) => {
       .populate({ path: 'course', model: Course, select : 'title' })
       .skip(skipAmount)
       .limit(Number(pageSize))
+			
+		const validReviews = reviews.filter((r) => r.user)
 
     const totalReviews = await Review.find({ 
       course: { $in: courses},
     }).countDocuments()
 
+
     const isNext = totalReviews > skipAmount + reviews.length
 
-    return { reviews, totalReviews, isNext }
+    return { reviews: validReviews , totalReviews, isNext }
   } catch (error) {
     throw new Error('Error getting reviews')
   }
@@ -159,10 +162,12 @@ export const getAdminReviews = async (params: GetPaginationParams) => {
 				select: 'fullName picture clerkId',
 			})
 
+		const validReviews = reviews.filter((r) => r.user && r.course)
+
 		const totalReviews = await Review.countDocuments()
 		const isNext = totalReviews > skipAmount + reviews.length
 
-		return { reviews, isNext, totalReviews }
+		return { reviews: validReviews, isNext, totalReviews }
 	} catch (error) {
 		throw new Error('Error getting admin reviews')
 	}

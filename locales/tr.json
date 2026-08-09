@@ -212,5 +212,7 @@
 	"messageCoursePurchased": "Tebrikler! Kursu başarıyla satın aldınız. Daha fazla ayrıntı için panelinizi kontrol edin.",
 	"messageCourseSold": "Tebrikler! Kursunuz satıldı. Daha fazla ayrıntı için panelinizi kontrol edin.",
 	"messageSendReview": "İncelemeniz için teşekkür ederiz. Yakında yayınlanacak.",
-	"messageUpdateReview": "İncelemeniz güncellendi."
+	"messageUpdateReview": "İncelemeniz güncellendi.",
+	"checking": "Kontrol ediliyor",
+	"waitingForRefresh": "Verileriniz yenilenirken lütfen bekleyin"
 }

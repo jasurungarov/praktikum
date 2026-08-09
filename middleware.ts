@@ -19,6 +19,8 @@ export default authMiddleware({
 		'/:lng/instructors',
 		'/:lng/instructors/:instructorId',
 		'/:lng/shopping/cart',
+		'/:lng/sign-in',
+		'/:lng/sign-up',
 	],
 	ignoredRoutes: ['/en/api/webhook'],
 })

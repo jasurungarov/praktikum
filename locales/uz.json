@@ -212,5 +212,7 @@
 	"messageCoursePurchased": "Tabriklaymiz! Siz muvaffaqiyatli kursni sotib olgansiz. Batafsil ma'lumotlar uchun, asosiy panelingizni tekshiring.",
 	"messageCourseSold": "Tabriklaymiz! Sizning kursingiz sotib olindi. Batafsil ma'lumotlar uchun, asosiy panelingizni tekshiring.",
 	"messageSendReview": "Izohingiz uchun rahmat. U tez orada chop etiladi.",
-	"messageUpdateReview": "Sizning izohingiz yangilandi."
+	"messageUpdateReview": "Sizning izohingiz yangilandi.",
+	"checking": "Tekshirilmoqda",
+	"waitingForRefresh": "Ma'lumotlaringiz yangilanmoqda, iltimos, biroz kuting"
 }
