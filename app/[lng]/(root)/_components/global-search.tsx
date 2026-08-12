@@ -40,7 +40,7 @@ function GlobalSearch() {
         variant={"ghost"}
         className="btn-search"
         aria-label="search-btn">
-        <Search />
+        <Search size={20} />
       </Button>
       <input
         type="text"

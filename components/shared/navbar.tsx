@@ -8,7 +8,7 @@ interface Props {
 }
 function Navbar({ isProfile }: Props) {
   return (
-    <div className="glass fixed inset-0 z-50 flex h-[10vh] justify-between border-b px-2 lg:px-4">
+    <div className="glass fixed inset-0 z-50 mt-2 flex h-[7vh] justify-between border-y px-2 lg:px-4">
       <Logo />
 
       <div className="flex items-center gap-4">

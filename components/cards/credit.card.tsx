@@ -9,7 +9,7 @@ function CreditCard({ card }: { card: ICard }) {
 	const t = useTranslate()
 
 	return (
-		<Card className='relative h-64 max-md:h-56'>
+		<Card className='relative h-64 border max-md:h-56'>
 			<CardContent className='relative z-50 flex h-full flex-col justify-between py-4'>
 				<div className='flex items-center justify-between'>
 					<Image src={'/assets/chip.png'} alt='chip' width={50} height={50} />

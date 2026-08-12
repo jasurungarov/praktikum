@@ -12,7 +12,7 @@ function Profile() {
 					appearance={{
 						baseTheme: resolvedTheme === 'dark' ? dark : undefined,
 						variables: {
-							colorBackground: resolvedTheme === 'dark' ? '#020817' : '#fff',
+							colorBackground: resolvedTheme === 'dark' ? '#01170e' : '#fff',
 						},
 					}}
 				/>

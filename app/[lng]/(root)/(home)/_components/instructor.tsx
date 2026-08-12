@@ -45,7 +45,7 @@ function Instructor({ instructors }: Props) {
         {t("becomeInstructor1")}{" "}
         <Link
           href={"/become-instructor"}
-          className="text-blue-500 underline hover:text-blue-600">
+          className="text-green-500 underline hover:text-blue-600">
           {t("becomeInstructor2")}
         </Link>
       </div>

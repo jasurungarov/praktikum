@@ -2,7 +2,9 @@
 	"navLink1": "Home",
 	"navLink2": "Courses",
 	"navLink3": "Blogs",
-	"navLink4": "Contact",
+	"navLink4": "Consulting",
+	"navLink5": "Iqra Arabia",
+	"navLink6": "Contact",
 	"manageAccount": "Manage account",
 	"logout": "Log Out",
 	"signUp": "Sign Up",
@@ -214,5 +216,7 @@
 	"messageSendReview": "Thank you for your review. It will be published shortly.",
 	"messageUpdateReview": "Your review has been updated.",
 	"checking" : "Checking",
-	"waitingForRefresh" : "Please wait while we refresh your data"
+	"waitingForRefresh" : "Please wait while we refresh your data",
+	"consulting" : "Consulting",
+	"consultingDescription" : "We provide consulting services to help you grow your business."
 }

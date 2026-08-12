@@ -9,7 +9,7 @@ interface Props {
 
 function StatisticsCard({ Icon, label, value }: Props) {
 	return (
-		<div className='flex items-center justify-between rounded-md bg-background p-4'>
+		<div className='glass flex items-center justify-between rounded-md p-4'>
 			<div className='flex flex-col space-y-2'>
 				<p className='text-muted-foreground'>{label}</p>
 				<p className='text-2xl font-bold'>{value}</p>

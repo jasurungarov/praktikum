@@ -20,12 +20,12 @@ function LearningJourney() {
         {learningJourney.map((item) => (
           <div
             key={item.title}
-            className="flex flex-col items-center justify-center rounded-md bg-secondary p-6 text-center">
+            className="flex flex-col items-center justify-center rounded-xl bg-secondary p-6 text-center">
             <Image src={item.image} alt={item.title} width={70} height={70} />
             <h2 className="mt-2 line-clamp-1 font-space-grotesk text-lg font-bold">
               {t(item.title)}
             </h2>
-            <p className="line-clamp-2 text-sm text-white/80">
+            <p className="line-clamp-2 text-sm">
               {t(item.excerpt)}
             </p>
           </div>

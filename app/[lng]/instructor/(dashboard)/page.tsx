@@ -69,7 +69,7 @@ async function Page() {
 
       <div className="mt-4 grid grid-cols-3 gap-4">
         {reviews.map((review) => (
-          <div key={review._id} className="rounded-md bg-background px-4 pb-4">
+          <div key={review._id} className="glass rounded-md px-4 pb-4">
             <ReviewCard review={JSON.parse(JSON.stringify(review))} />
           </div>
         ))}

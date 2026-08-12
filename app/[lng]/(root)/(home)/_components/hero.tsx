@@ -17,16 +17,16 @@ function Hero() {
 
   return (
     <>
-      <div className="container mx-auto grid min-h-[80vh] max-w-6xl grid-cols-2 gap-8 max-md:grid-cols-1 max-md:pt-32">
+      <div className="container mx-auto grid min-h-[75vh] max-w-6xl grid-cols-2 gap-8 max-md:grid-cols-1 max-md:pt-32">
         <div className="flex flex-col space-y-4 self-center">
           <h1 className="font-space-grotesk text-5xl font-bold">
             {t("heroTitle")}{" "}
-            <span className="text-blue-500">{t("heroTitleSpan")}</span>
+            <span className="text-primary">{t("heroTitleSpan")}</span>
           </h1>
           <p className="text-muted-foreground">{t("heroDescription")}</p>
           <div className="flex gap-4">
             <Link href={"/courses"}>
-              <Button variant={"outline"} size={"lg"} rounded={"full"}>
+              <Button variant={"outline"} size={"lg"} rounded={"full"} className='glass'>
                 {t("findCourses")}
               </Button>
             </Link>
@@ -44,7 +44,7 @@ function Hero() {
           width={520}
           height={520}
           sizes="(max-width: 520px) 100vw, (max-width: 520px) 50vw, 33vw"
-          className="h-auto w-full self-end object-cover"
+          className="h-auto w-full self-end object-cover"      
         />
       </div>
 

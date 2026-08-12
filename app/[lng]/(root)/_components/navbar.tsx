@@ -23,9 +23,10 @@ function Navbar() {
   const { lng } = useParams();
   const { cartsLength } = useCart();
 
+  
   return (
-    <div className="fixed inset-0 z-40 h-20 bg-background/70 backdrop-blur-xl">
-      <div className="container mx-auto flex h-full max-w-7xl items-center justify-between border-b">
+    <div className="fixed inset-0 top-3 z-40 h-16 bg-background/70 backdrop-blur-xl">
+      <div className="container mx-auto flex h-full max-w-7xl items-center justify-between border-y">
         <div className="flex items-center gap-4">
           <Logo />
           <div className="hidden items-center gap-3 border-l pl-2 md:flex">
@@ -34,8 +35,8 @@ function Navbar() {
                 href={`/${nav.route}`}
                 key={nav.route}
                 className={cn(
-                  "font-medium transition-all hover:text-blue-500 hover:underline",
-                  pathname === `/${lng}/${nav.route}` && "text-blue-500",
+                  "font-medium transition-all hover:text-green-500 hover:underline",
+                  pathname === `/${lng}/${nav.route}` && "text-green-500",
                 )}>
                 {t(nav.name)}
               </Link>
@@ -45,7 +46,7 @@ function Navbar() {
 
         <div className="flex items-center gap-2">
           <div className="flex items-center gap-2 md:border-r md:pr-3">
-            <div className="hidden gap-1 md:flex">
+            <div className="hidden md:flex">
               <GlobalSearch />
               <LanguageDropdown />
               <Notification />
@@ -55,9 +56,9 @@ function Navbar() {
                 asChild
                 className="relative">
                 <Link href={"/shopping/cart"} aria-label='shopping-cart'>
-                  <ShoppingCart />
+                  <ShoppingCart size={20}/>
                   {cartsLength() ? (
-                    <div className="absolute -right-2 -top-2 flex size-6 items-center justify-center rounded-full bg-destructive">
+                    <div className="absolute -right-2 -top-2 flex size-4 items-center justify-center rounded-full bg-destructive">
                       {cartsLength()}
                     </div>
                   ) : null}
@@ -72,7 +73,7 @@ function Navbar() {
           </SignedIn>
           <SignedOut>
             <SignInButton mode="modal">
-             <Button size={'lg'} rounded={'full'} className='hidden md:flex'>
+             <Button size={'default'} rounded={'full'} className='hidden font-semibold md:flex'>
                 {t("logIn")}
               </Button>
             </SignInButton>

@@ -10,7 +10,7 @@ function Page() {
         description="Fill in the details below to create a new course"
       />
 
-      <div className="mt-4 rounded-md bg-background p-4">
+      <div className="mt-4 rounded-md bg-popover/70 p-4">
         <h3 className="font-space-grotesk text-lg font-medium">
           Basic information
         </h3>

@@ -45,7 +45,7 @@ function InstructorReviewCard({ review, isProfile, isAdmin }: Props) {
     <div
       className={cn(
         "relative flex gap-4 border-b pb-4",
-        isAdmin && "bg-background p-2 rounded-md",
+        isAdmin && "glass p-2 rounded-md",
       )}>
       {isLoading && <FillLoading />}
       <div className="flex-1">

@@ -42,7 +42,7 @@ function AdminCourseCard({ course }: { course: ICourse }) {
 	}
 
   return (
-    <Card className="w-full">
+    <Card className="glass w-full">
       <CardContent className="relative h-56 w-full">
         <Image
           fill

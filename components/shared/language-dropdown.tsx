@@ -34,7 +34,7 @@ function LanguageDropdown({ isMobile = false }: Props) {
 					)}
 					aria-label='language-dropdown'
 				>
-					<Languages />
+					<Languages size={20}/>
 					{isMobile && (
 						<span className='ml-2 font-space-grotesk font-medium'>
 							{getCurrentLng(lng as string)}

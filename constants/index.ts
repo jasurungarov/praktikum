@@ -1,5 +1,6 @@
 import {
 	Bell,
+	BookOpen,
 	Contact,
 	CreditCard,
 	FileCode,
@@ -8,9 +9,10 @@ import {
 	ListVideo,
 	MessageSquareMore,
 	MonitorPlay,
-	// Rss,
+	Rss,
 	Settings2,
 	User,
+	Handshake,
 } from 'lucide-react'
 import {
 	DiCisco,
@@ -31,8 +33,10 @@ import {
 export const navLinks = [
 	{ route: '', name: 'navLink1', icon: Home },
 	{ route: 'courses', name: 'navLink2', icon: ListVideo },
-	// { route: 'blogs', name: 'navLink3', icon: Rss },
-	{ route: 'contacts', name: 'navLink4', icon: Contact },
+	{ route: 'blogs', name: 'navLink3', icon: Rss },
+	{ route: 'consulting', name: 'navLink4', icon: Handshake },
+	{ route: 'iqro-arabia', name: 'navLink5', icon: BookOpen },
+	{ route: 'contacts', name: 'navLink6', icon: Contact },
 ]
 
 export const lngs = [

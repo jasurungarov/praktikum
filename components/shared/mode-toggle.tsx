@@ -18,7 +18,7 @@ function ModeToggle() {
 			onClick={() => setTheme('light')}
 			aria-label='mode-toggle-to-light'
 		>
-			<Sun />
+			<Sun size={20}/>
 		</Button>
 	) : (
 		<Button
@@ -27,7 +27,7 @@ function ModeToggle() {
 			variant={'ghost'}
 			aria-label='mode-toggle-to-dark'
 		>
-			<Moon />
+			<Moon size={20}/>
 		</Button>
 	)
 }

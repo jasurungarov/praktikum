@@ -10,7 +10,7 @@ interface Props {
 function InstructorCourseCard({ course }: Props) {
 	return (
 		<Link href={`/en/instructor/my-courses/${course._id}`}>
-		<div className='flex flex-col space-y-2 rounded-md bg-background p-2'>
+		<div className='glass flex flex-col space-y-2 rounded-md p-2'>
 			<div className='relative h-52 w-full'>
 				<Image
 					src={course.previewImage as string}

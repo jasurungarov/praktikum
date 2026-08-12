@@ -7,7 +7,7 @@ import CustomImage from '../shared/custom-image'
 function CourseCard(course: ICourse) {
   return (
     <Link href={`/course/${course._id}`}>
-      <Card className="group w-full">
+      <Card className="liquid-glass group w-full">
         <CardContent className="relative h-56 w-full">
           <CustomImage src={course.previewImage} alt={course.title} />
         </CardContent>

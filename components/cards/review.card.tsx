@@ -13,7 +13,7 @@ function ReviewCard({ review }: { review: IReview }) {
 	const t = useTranslate()
 
 	return (
-		<div className="mt-6 border-t border-t-secondary">
+		<div className="mt-6 border-t border-t-primary">
 			<div className="mt-8 flex gap-2">
 				<Avatar>
 					<AvatarImage src={review.user.picture} />

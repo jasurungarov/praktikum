@@ -35,7 +35,7 @@ function Notification() {
 			className='relative'
 		>
 			<Link href={'/profile/notifications'} aria-label='notification-btn'>
-				<Bell />
+				<Bell size={20}/>
 				{count > 0 && (
 					<div className='absolute -right-2 -top-2 flex size-6 items-center justify-center rounded-full bg-destructive'>
 						{count}

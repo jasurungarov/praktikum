@@ -15,7 +15,7 @@ async function Page({ searchParams }: SearchParamsProps) {
 				description='Here are all the reviews you have'
 			/>
 
-			<div className='mt-4 rounded-md bg-background p-4'>
+			<div className='mt-4 rounded-md bg-popover p-4'>
 				<div className='flex flex-col space-y-3'>
 					{reviewData.reviews.map(review => (
 						<InstructorReviewCard
