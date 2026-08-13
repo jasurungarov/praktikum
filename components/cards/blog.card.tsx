@@ -1,75 +1,62 @@
-import { getReadingTime } from '@/lib/utils'
-import { IBlog } from '@/types'
-import { CalendarDays, Clock, Dot, Layers2, Minus, Tag } from 'lucide-react'
-import Image from 'next/image'
-import Link from 'next/link'
-import { format } from 'date-fns'
-import { Badge } from '../ui/badge'
+import { IBlog } from "@/types";
+import { format } from "date-fns";
+import { CalendarDays } from "lucide-react";
+import Image from "next/image";
+import Link from "next/link";
 
-function BlogCard(blog: IBlog) {
-	return (
-		<Link href={`/blogs/${blog.slug}`}>
-			<div className={'group grid grid-cols-1 gap-4'}>
-				<div className='relative rounded-md bg-secondary'>
-					<Image
-						width={650}
-						height={335}
-						src={blog.image.url}
-						alt={blog.title}
-						className='-translate-y-6 rounded-md object-cover px-2 grayscale transition-all group-hover:-translate-y-7 group-hover:grayscale-0 max-md:-translate-y-2 max-md:group-hover:-translate-y-3 md:px-7'
-					/>
-				</div>
-
-				<div className='flex flex-col space-y-4'>
-					{/* Time info */}
-					<div className='flex items-center gap-4'>
-						<div className='flex items-center gap-2'>
-							<CalendarDays className='size-5' />
-							<p>{format(new Date(blog.createdAt), 'MMM dd, yyyy')}</p>
-						</div>
-						<Minus />
-						<div className='flex items-center gap-2'>
-							<Clock className='size-5' />
-							<p>{getReadingTime(blog.content.html)} min read</p>
-						</div>
-					</div>
-
-					{/* Title */}
-					<h2 className='font-space-grotesk text-3xl transition-colors group-hover:text-blue-500 max-md:text-2xl'>
-						{blog.title}
-					</h2>
-					<p className='line-clamp-3 text-muted-foreground'>
-						{blog.description}
-					</p>
-
-					{/* Author */}
-					<div className='flex items-center gap-4'>
-						<div className='flex items-center gap-2'>
-							<Image
-								src={blog.author.image.url}
-								alt='author'
-								width={30}
-								height={30}
-								className='rounded-sm object-cover'
-							/>
-							<p>by {blog.author.name}</p>
-						</div>
-						<Dot />
-						<div className='flex items-center gap-2'>
-							<Badge variant={'secondary'} role='button'>
-								<Tag className='me-2 size-3' />
-								{blog.tag.name}
-							</Badge>
-							<Badge variant={'outline'} role='button'>
-								<Layers2 className='me-2 size-3' />
-								{blog.category.name}
-							</Badge>
-						</div>
-					</div>
-				</div>
-			</div>
-		</Link>
-	)
+interface BlogCardProps {
+  blog: IBlog;
 }
 
-export default BlogCard
+function BlogCard({ blog }: BlogCardProps) {
+  return (
+    <Link
+      href={`/blogs/${blog.slug}`}
+      className="group flex flex-col rounded-2xl border border-white/10 bg-white/[0.03] shadow-[0_0_20px_1px_hsl(var(--secondary)/0.35)] backdrop-blur-md transition-all duration-300 hover:-translate-y-1 hover:border-secondary/40 hover:shadow-[0_0_45px_12px_hsl(var(--secondary)/0.35)]">
+
+      {/* overflow-hidden endi ALOHIDA wrapper'da, shadow bilan bir joyda emas */}
+      <div className="relative aspect-[16/10] overflow-hidden rounded-t-2xl">
+        <Image
+          src={blog.image.url}
+          alt={blog.title}
+          fill
+          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+          className="object-cover transition-transform duration-500 group-hover:scale-105"
+        />
+        <span className="absolute left-3 top-3 rounded-full bg-primary/80 px-3 py-1 text-xs font-medium shadow-[0_0_50px_1px_hsl(var(--primary)/0.35)] dark:bg-secondary">
+          {blog.category.name}
+        </span>
+      </div>
+
+      <div className="flex flex-1 flex-col gap-3 rounded-b-2xl p-5">
+        <h2 className="font-space-grotesk text-xl font-bold leading-snug text-foreground transition-colors group-hover:text-green-500">
+          {blog.title}
+        </h2>
+
+        <p className="line-clamp-2 flex-1 text-sm text-muted-foreground">
+          {blog.description} <span className="text-muted-foreground">batafsil oqish uchun bosing</span>
+        </p>
+
+        <div className="mt-1 flex items-center gap-2 border-t border-white/10 pt-3 text-xs text-muted-foreground">
+          <Image
+            src={blog.author.image.url}
+            alt={blog.author.name}
+            width={24}
+            height={24}
+            className="rounded-full object-cover"
+          />
+          <span className="font-medium text-foreground">
+            {blog.author.name}
+          </span>
+          <span className="h-3 w-px bg-white/15" />
+          <div className="flex items-center gap-1.5">
+            <CalendarDays className="size-3.5" />
+            <span>{format(new Date(blog.createdAt), "MMM dd, yyyy")}</span>
+          </div>
+        </div>
+      </div>
+    </Link>
+  );
+}
+
+export default BlogCard;

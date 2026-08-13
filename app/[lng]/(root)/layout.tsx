@@ -7,7 +7,7 @@ function Layout({ children }: ChildProps) {
 	return (
 		<div>
 			<Navbar />
-			<main className='pt-12'>{children}</main>
+			<main>{children}</main>
 			<Footer />
 			<RefreshModal />
 		</div>
