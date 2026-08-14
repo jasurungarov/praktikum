@@ -8,7 +8,7 @@ interface Props {
 
 function BlogContent({ html }: Props) {
   return (
-    <div className="container mx-auto max-w-5xl">
+    <div className="container mx-auto max-w-6xl">
       <div className="relative mt-10 flex gap-12 max-md:flex-col-reverse">
         <aside className="flex md:w-14 md:flex-col">
           <div className="sticky top-28">

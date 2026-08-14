@@ -15,7 +15,7 @@ function TopBar({ label, extra, description }: Props) {
 
 	return (
 		<>
-			<div className='mt-20 h-12 bg-gradient-to-r from-secondary to-primary'>
+			<div className='mt-24 h-12 bg-gradient-to-r from-secondary to-primary'>
 				<div className='container mx-auto flex w-full max-w-6xl items-center'>
 					<div className='flex items-center'>
 						<Link

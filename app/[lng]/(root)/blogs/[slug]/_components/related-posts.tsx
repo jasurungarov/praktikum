@@ -11,7 +11,7 @@ function RelatedPosts({ blogs }: Props) {
   if (!blogs.length) return null;
 
   return (
-    <div className="container mx-auto my-20 max-w-5xl">
+    <div className="container mx-auto my-20 max-w-6xl">
       <h2 className="font-space-grotesk text-2xl font-bold">
         O&apos;xshash maqolalar
       </h2>

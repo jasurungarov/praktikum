@@ -51,6 +51,7 @@ export const mockRelatedBlogs: IBlog[] = [
   { ...mockBlog, slug: "portfolio-yaratish", title: "Dasturchi sifatida kuchli portfolio qanday yaratiladi" },
   { ...mockBlog, slug: "birinchi-ish-topish", title: "Dasturlashda birinchi ishni topish yo'llari" },
 ];
+
 export const mockBlogsList: IBlog[] = [
   mockBlog,
   {
@@ -59,10 +60,7 @@ export const mockBlogsList: IBlog[] = [
     title: "Python vs JavaScript: qaysi birini tanlash kerak?",
     description:
       "Ikkala tilning kuchli va zaif tomonlari, qaysi loyihalar uchun qaysi biri mosligi haqida to'liq taqqoslash.",
-    category: {
-      name: "Dasturlash", slug: "dasturlash",
-      blogs: []
-    },
+    category: { name: "Dasturlash", slug: "dasturlash", blogs: [] },
     createdAt: "2026-07-10T10:00:00.000Z",
   },
   {
@@ -71,10 +69,7 @@ export const mockBlogsList: IBlog[] = [
     title: "Dasturchi sifatida kuchli portfolio qanday yaratiladi",
     description:
       "Ish beruvchilar e'tiborini tortadigan portfolio qanday tuzilishi, qaysi loyihalarni qo'shish kerakligi haqida maslahatlar.",
-    category: {
-      name: "Karyera", slug: "karyera",
-      blogs: []
-    },
+    category: { name: "Karyera", slug: "karyera", blogs: [] },
     createdAt: "2026-07-02T10:00:00.000Z",
   },
   {
@@ -83,14 +78,8 @@ export const mockBlogsList: IBlog[] = [
     title: "Ingliz tilini tez o'rganishning 5 ta samarali metodi",
     description:
       "Til o'rganishda eng ko'p uchraydigan xatolar va ularni oldini olish uchun amaliy tavsiyalar.",
-    category: {
-      name: "Til kurslari", slug: "til-kurslari",
-      blogs: []
-    },
-    tag: {
-      name: "Metodika", slug: "metodika",
-      blogs: []
-    },
+    category: { name: "Til kurslari", slug: "til-kurslari", blogs: [] },
+    tag: { name: "Metodika", slug: "metodika", blogs: [] },
     createdAt: "2026-06-25T10:00:00.000Z",
   },
   {
@@ -99,10 +88,7 @@ export const mockBlogsList: IBlog[] = [
     title: "Biznes konsalting xizmati sizga qanday foyda beradi",
     description:
       "Kichik va o'rta biznes egalari uchun konsalting xizmatining amaliy afzalliklari haqida.",
-    category: {
-      name: "Konsalting", slug: "konsalting",
-      blogs: []
-    },
+    category: { name: "Konsalting", slug: "konsalting", blogs: [] },
     createdAt: "2026-06-18T10:00:00.000Z",
   },
   {
@@ -111,10 +97,61 @@ export const mockBlogsList: IBlog[] = [
     title: "Makkada diniy ta'lim olish imkoniyatlari",
     description:
       "Iqro Arabia dasturi orqali Makkada ta'lim olish jarayoni va talablar haqida to'liq ma'lumot.",
-    category: {
-      name: "Iqro Arabia", slug: "iqro-arabia",
-      blogs: []
-    },
+    category: { name: "Iqro Arabia", slug: "iqro-arabia", blogs: [] },
     createdAt: "2026-06-10T10:00:00.000Z",
+  },
+  {
+    ...mockBlog,
+    slug: "react-vs-vue-2026",
+    title: "React vs Vue: 2026-yilda qaysi frameworkni tanlash kerak?",
+    description:
+      "Ikkala framework'ning ekotizimi, ish bozoridagi talabi va o'rganish egri chizig'i bo'yicha solishtiruv.",
+    category: { name: "Dasturlash", slug: "dasturlash", blogs: [] },
+    createdAt: "2026-06-02T10:00:00.000Z",
+  },
+  {
+    ...mockBlog,
+    slug: "remote-ish-topish",
+    title: "Remote dasturchi sifatida xorijiy kompaniyada ishlash yo'llari",
+    description:
+      "LinkedIn, Upwork va boshqa platformalarda xorijiy kompaniyalar bilan qanday ishlash kerak.",
+    category: { name: "Karyera", slug: "karyera", blogs: [] },
+    createdAt: "2026-05-20T10:00:00.000Z",
+  },
+  {
+    ...mockBlog,
+    slug: "ielts-tayyorgarlik",
+    title: "IELTS imtihoniga uyda qanday tayyorlanish mumkin",
+    description:
+      "Reading, Listening, Writing va Speaking bo'limlariga oid amaliy mashqlar va manbalar ro'yxati.",
+    category: { name: "Til kurslari", slug: "til-kurslari", blogs: [] },
+    createdAt: "2026-05-14T10:00:00.000Z",
+  },
+  {
+    ...mockBlog,
+    slug: "startup-uchun-konsalting",
+    title: "Startup loyihangiz uchun qanday konsalting xizmati kerak",
+    description:
+      "Boshlang'ich bosqichdagi startuplar ko'pincha e'tibor bermaydigan konsalting yo'nalishlari.",
+    category: { name: "Konsalting", slug: "konsalting", blogs: [] },
+    createdAt: "2026-05-05T10:00:00.000Z",
+  },
+  {
+    ...mockBlog,
+    slug: "arab-tili-alifbosi",
+    title: "Arab tili alifbosini noldan o'rganish qo'llanmasi",
+    description:
+      "Harflarning yozilishi, talaffuzi va birikish qoidalari haqida boshlang'ichlar uchun darslik.",
+    category: { name: "Iqro Arabia", slug: "iqro-arabia", blogs: [] },
+    createdAt: "2026-04-28T10:00:00.000Z",
+  },
+  {
+    ...mockBlog,
+    slug: "typescript-boshlanguchlar-uchun",
+    title: "TypeScript'ni JavaScript dasturchilari uchun tushuntirish",
+    description:
+      "Type xavfsizligi nima uchun kerak va uni loyihangizga qanday qo'shish mumkin.",
+    category: { name: "Dasturlash", slug: "dasturlash", blogs: [] },
+    createdAt: "2026-04-15T10:00:00.000Z",
   },
 ];
