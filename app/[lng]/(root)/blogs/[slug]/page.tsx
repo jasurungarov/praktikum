@@ -1,4 +1,4 @@
-import { mockBlog, mockRelatedBlogs } from "@/constants/mock-blogs";
+import { mockBlog, mockBlogsList, getRelatedBlogs } from "@/constants/mock-blogs";
 import { Metadata } from "next";
 import AuthorCard from "./_components/author-card";
 import BackButton from "./_components/back-button";
@@ -25,11 +25,11 @@ export async function generateMetadata(): Promise<Metadata> {
 
 async function Page() {
   const blog = mockBlog;
-  const related = mockRelatedBlogs;
+  const related = getRelatedBlogs(mockBlogsList, blog);
 
   return (
     <div className="pt-[8vh]">
-      <div className="container mx-auto max-w-5xl">
+      <div className="container mx-auto max-w-6xl">
         <BackButton />
       </div>
         <CoverImage blog={blog} />

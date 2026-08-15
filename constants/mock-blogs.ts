@@ -46,11 +46,40 @@ export const mockBlog: IBlog = {
   },
 };
 
-export const mockRelatedBlogs: IBlog[] = [
-  { ...mockBlog, slug: "python-vs-javascript", title: "Python vs JavaScript: qaysi birini tanlash kerak?" },
-  { ...mockBlog, slug: "portfolio-yaratish", title: "Dasturchi sifatida kuchli portfolio qanday yaratiladi" },
-  { ...mockBlog, slug: "birinchi-ish-topish", title: "Dasturlashda birinchi ishni topish yo'llari" },
-];
+/**
+ * Picks posts related to `current`, preferring the same category.
+ * If there aren't enough same-category posts, it fills the rest
+ * with the most recent other posts so the section is never empty.
+ *
+ * TEMPORARY: this runs against the in-memory mock list. Once the
+ * DB action is ready, replace this with a real query
+ * (same category, excluding current slug, sorted by date, limit N)
+ * — the calling code (page.tsx) won't need to change.
+ */
+export function getRelatedBlogs(
+  blogs: IBlog[],
+  current: IBlog,
+  limit = 3,
+): IBlog[] {
+  const others = blogs.filter((b) => b.slug !== current.slug);
+
+  const sameCategory = others.filter(
+    (b) => b.category.slug === current.category.slug,
+  );
+
+  if (sameCategory.length >= limit) {
+    return sameCategory.slice(0, limit);
+  }
+
+  const rest = others
+    .filter((b) => b.category.slug !== current.category.slug)
+    .sort(
+      (a, b) =>
+        new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime(),
+    );
+
+  return [...sameCategory, ...rest].slice(0, limit);
+}
 
 export const mockBlogsList: IBlog[] = [
   mockBlog,

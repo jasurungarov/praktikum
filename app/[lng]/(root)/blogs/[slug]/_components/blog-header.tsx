@@ -11,7 +11,7 @@ interface Props {
 
 function BlogHeader({ blog }: Props) {
   return (
-    <div className="container mx-auto max-w-6xl pt-8">
+    <div className="container mx-auto max-w-6xl pt-10">
       <div className="flex flex-wrap items-center gap-3">
         <Link
           href={`/blogs?category=${blog.category.slug}`}
@@ -23,15 +23,15 @@ function BlogHeader({ blog }: Props) {
         </span>
       </div>
 
-      <h1 className="mt-5 font-space-grotesk text-4xl font-bold leading-tight md:text-5xl lg:text-[56px]">
+      <h1 className="mt-5 font-space-grotesk text-3xl font-bold leading-tight sm:text-4xl md:text-5xl lg:text-[56px]">
         {blog.title}
       </h1>
 
-      <p className="mt-4 max-w-2xl text-lg text-muted-foreground">
+      <p className="mt-4 max-w-2xl text-muted-foreground sm:text-lg">
         {blog.description}
       </p>
 
-      <div className="mt-6 flex flex-wrap items-center gap-5 border-t border-white/10 pt-5">
+      <div className="mt-6 flex flex-wrap items-center gap-5 gap-y-3 border-t border-white/10 pt-5">
         <div className="flex items-center gap-2.5">
           <Image
             src={blog.author.image.url}
@@ -43,14 +43,14 @@ function BlogHeader({ blog }: Props) {
           <span className="text-sm font-medium">{blog.author.name}</span>
         </div>
 
-        <span className="h-4 w-px bg-white/10" />
+        <span className="h-4 w-px bg-white/10 max-sm:hidden" />
 
         <div className="flex items-center gap-2 text-sm text-muted-foreground">
           <CalendarDays className="size-4" />
           {format(new Date(blog.createdAt), "MMM dd, yyyy")}
         </div>
 
-        <span className="h-4 w-px bg-white/10" />
+        <span className="h-4 w-px bg-white/10 max-sm:hidden" />
 
         <div className="flex items-center gap-2 text-sm text-muted-foreground">
           <Clock className="size-4" />

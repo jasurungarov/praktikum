@@ -31,7 +31,7 @@ function Pagination({ page, totalPages, onChange }: Props) {
   };
 
   return (
-    <div className="mt-14 flex items-center justify-center gap-2">
+    <div className="mt-14 flex flex-wrap items-center justify-center gap-2">
       <Button
         size="icon"
         variant="ghost"

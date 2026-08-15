@@ -65,17 +65,17 @@ function ShareBtns() {
   };
 
   return (
-    <div className="flex flex-col gap-2 md:flex-col">
+    <div className="flex flex-col items-center gap-2 md:items-start">
       <p className="mb-1 text-xs font-medium uppercase tracking-wider text-muted-foreground">
-        {t("share")}
+        {t("share")} 
       </p>
-      <div className="flex gap-2 md:flex-col">
+      <div className="flex flex-wrap justify-center gap-2 md:flex-col md:justify-start">
         {items.map(({ icon: Icon, label }) => (
           <button
             key={label}
             onClick={onShare}
             aria-label={label}
-            className="flex size-10 items-center justify-center rounded-full border border-white/10 bg-white/5 text-muted-foreground backdrop-blur-md transition-all duration-300 hover:border-[#d4af37]/30 hover:bg-[#d4af37]/10 hover:text-[#d4af37]">
+            className="flex size-10 items-center justify-center rounded-full border border-white/10 bg-white/5 text-muted-foreground backdrop-blur-md transition-all duration-300 hover:border-yellow-500/30 hover:bg-yellow-500/10 hover:text-yellow-500">
             <Icon className="size-4" />
           </button>
         ))}

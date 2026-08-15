@@ -16,7 +16,7 @@ function RelatedPosts({ blogs }: Props) {
         O&apos;xshash maqolalar
       </h2>
 
-      <div className="mt-6 grid grid-cols-3 gap-5 max-md:grid-cols-1">
+      <div className="mt-6 grid grid-cols-3 gap-5 max-md:grid-cols-2 max-sm:grid-cols-1">
         {blogs.map((blog) => (
           <Link
             key={blog.slug}

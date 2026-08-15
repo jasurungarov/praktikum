@@ -30,7 +30,7 @@ function FeaturedPost({ blog }: Props) {
           Eng so&apos;nggi maqola
         </span>
 
-        <h2 className="font-space-grotesk text-3xl font-bold leading-tight transition-colors group-hover:text-green-500 md:text-4xl">
+        <h2 className="font-space-grotesk text-2xl font-bold leading-tight transition-colors group-hover:text-yellow-400 sm:text-3xl md:text-4xl">
           {blog.title}
         </h2>
 
@@ -38,7 +38,7 @@ function FeaturedPost({ blog }: Props) {
           {blog.description}
         </p>
 
-        <div className="mt-5 flex items-center gap-4 text-sm text-muted-foreground">
+        <div className="mt-5 flex flex-wrap items-center gap-x-4 gap-y-2 text-sm text-muted-foreground">
           <div className="flex items-center gap-2">
             <Image
               src={blog.author.image.url}
@@ -49,12 +49,12 @@ function FeaturedPost({ blog }: Props) {
             />
             {blog.author.name}
           </div>
-          <span className="h-3.5 w-px bg-white/15" />
+          <span className="h-3.5 w-px bg-white/15 max-sm:hidden" />
           <div className="flex items-center gap-1.5">
             <CalendarDays className="size-4" />
             {format(new Date(blog.createdAt), "MMM dd, yyyy")}
           </div>
-          <span className="h-3.5 w-px bg-white/15" />
+          <span className="h-3.5 w-px bg-white/15 max-sm:hidden" />
         </div>
       </div>
     </Link>

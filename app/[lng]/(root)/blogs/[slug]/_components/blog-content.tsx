@@ -11,12 +11,12 @@ function BlogContent({ html }: Props) {
     <div className="container mx-auto max-w-6xl">
       <div className="relative mt-10 flex gap-12 max-md:flex-col-reverse">
         <aside className="flex md:w-14 md:flex-col">
-          <div className="sticky top-28">
+          <div className="md:sticky md:top-28">
             <ShareBtns />
           </div>
         </aside>
 
-        <article className="prose-a:text-gold prose max-w-none flex-1 dark:prose-invert prose-headings:font-space-grotesk prose-headings:font-bold prose-a:no-underline hover:prose-a:underline">
+        <article className="prose-a:text-gold prose max-w-none flex-1 break-words dark:prose-invert prose-headings:font-space-grotesk prose-headings:font-bold prose-a:no-underline hover:prose-a:underline prose-img:rounded-xl">
           {parse(html)}
         </article>
       </div>
