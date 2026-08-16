@@ -135,3 +135,19 @@ export interface INotification {
 	isRead: boolean
 	createdAt: string
 }
+
+export interface IBlogDB {
+  _id: string
+  title: string
+  description: string
+  content: string
+  slug: string
+  category: string
+  tag: string
+  coverImage: string
+  published: boolean
+  author: IUser
+  views: number
+  createdAt: string
+  updatedAt: string
+}

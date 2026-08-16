@@ -13,6 +13,7 @@ import {
 	Settings2,
 	User,
 	Handshake,
+	BookOpenCheck,
 } from 'lucide-react'
 import {
 	DiCisco,
@@ -236,7 +237,6 @@ export const courseCategory = [
 ]
 export const courseLanguage = ['english', 'uzbek', 'russian', 'turkish']
 
-
 export const editorConfig = {
 	height: 150,
 	menubar: false,
@@ -271,6 +271,12 @@ export const instructorNavLinks = [
 		route: '/instructor/create-course',
 		icon: FileCode,
 	},
+	{ label: 'My Blogs', route: '/instructor/my-blogs', icon: BookOpenCheck },
+	{
+		label: 'Create Blog',
+		route: '/instructor/create-blog',
+		icon: Rss,
+	},
 	{ label: 'Reviews', route: '/instructor/reviews', icon: MessageSquareMore },
 	{ label: 'Settings', route: '/instructor/settings', icon: Settings2 },
 ]
@@ -292,3 +298,20 @@ export const adminNavLinks = [
 	{ label: 'Reviews', route: '/admin/reviews', icon: MessageSquareMore },
 	{ label: 'Notifications', route: '/admin/notifications', icon: Bell },
 ]
+
+export const blogCategory = [
+	'dasturlash',
+	'karyera',
+	'til-kurslari',
+	'konsalting',
+	'iqro-arabia',
+]
+ 
+export const blogTag = [
+	'boshlangich',
+	"o'rta",
+	'ilg\'or',
+	'metodika',
+	'yangilik',
+]
+ 

@@ -104,3 +104,34 @@ export const bioSchema = z.object({
 	job: z.string().min(3),
 	bio: z.string().min(10),
 })
+
+
+export const blogSchema = z.object({
+	title: z.string().min(3),
+	description: z.string().min(10),
+	content: z.string().min(20),
+	category: z.string(),
+	tag: z.string(),
+})
+ 
+export const blogFieldsSchema = z.object({
+	title: z.string().min(3),
+	slug: z.string().min(3),
+})
+ 
+export const blogDescriptionSchema = z.object({
+	description: z.string().min(10),
+})
+ 
+export const blogContentSchema = z.object({
+	content: z.string().min(20),
+})
+ 
+export const blogSelectFieldsSchema = z.object({
+	category: z.string(),
+	tag: z.string(),
+})
+ 
+export const blogCoverImageSchema = z.object({
+	coverImage: z.string(),
+})

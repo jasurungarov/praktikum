@@ -78,3 +78,26 @@ export interface GetPaginationParams {
 	page?: number
 	pageSize?: number
 }
+
+export interface ICreateBlog {
+  title: String,
+  slug: String,
+  description: String,
+  content: String,
+  category: String,
+  tag: String,
+  coverImage: String,
+}
+ 
+export interface GetInstructorBlogsParams {
+  clerkId: string
+  page?: number
+  pageSize?: number
+}
+ 
+export interface GetAllBlogsParams {
+  page?: number
+  pageSize?: number
+  searchQuery?: string
+  category?: string
+}
