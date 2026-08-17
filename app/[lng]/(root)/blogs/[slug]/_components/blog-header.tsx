@@ -1,3 +1,5 @@
+"use client";
+
 import { IBlogDB } from '@/app.types'
 import { blogCategory, blogTag } from '@/constants'
 import useTranslate from '@/hooks/use-translate'

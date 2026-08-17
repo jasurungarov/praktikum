@@ -1,4 +1,5 @@
 import { IBlogDB } from "@/app.types";
+import useTranslate from "@/hooks/use-translate";
 import { getReadingTime } from "@/lib/utils";
 import { format } from "date-fns";
 import { CalendarDays, Clock, Sparkles } from "lucide-react";
@@ -10,6 +11,8 @@ interface Props {
 }
 
 function FeaturedPost({ blog }: Props) {
+  const t = useTranslate();
+
   return (
     <Link
       href={`/blogs/${blog.slug}`}
@@ -28,7 +31,7 @@ function FeaturedPost({ blog }: Props) {
       <div className="flex flex-col justify-center py-4 pr-6 max-md:px-4 max-md:pb-6">
         <span className="mb-4 inline-flex w-fit items-center gap-1.5 rounded-full border border-amber-500/30 bg-amber-500/5 px-3 py-1 text-xs font-medium text-amber-400">
           <Sparkles className="size-3.5" />
-          Eng so&apos;nggi maqola
+          {t("latestArticle")}
         </span>
 
         <h2 className="font-space-grotesk text-2xl font-bold leading-tight transition-colors group-hover:text-yellow-400 sm:text-3xl md:text-4xl">
@@ -58,7 +61,7 @@ function FeaturedPost({ blog }: Props) {
           <span className="h-3.5 w-px bg-white/15 max-sm:hidden" />
           <div className="flex items-center gap-1.5">
             <Clock className="size-4" />
-            {getReadingTime(blog.content)} daqiqa
+            {getReadingTime(blog.content)} {t("minutes")}
           </div>
         </div>
       </div>

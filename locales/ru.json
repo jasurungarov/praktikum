@@ -247,5 +247,6 @@
 	"blogTag3": "Продвинутый",
 	"blogTag4": "Методика",
 	"blogTag5": "Новости",
-	"searchBlogsPlaceholder": "Искать статьи или темы..."
+	"searchBlogsPlaceholder": "Искать статьи или темы...",
+	"latestArticle": "Последняя статья"
 }

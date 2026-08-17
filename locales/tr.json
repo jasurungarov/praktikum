@@ -247,5 +247,6 @@
 	"blogTag3": "İleri",
 	"blogTag4": "Metodoloji",
 	"blogTag5": "Haberler",
-	"searchBlogsPlaceholder": "ИKonu, makale veya anahtar kelime ara..."
+	"searchBlogsPlaceholder": "Konu, makale veya anahtar kelime ara...",
+	"latestArticle": "En son makale"
 }
