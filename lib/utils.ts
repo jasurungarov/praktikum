@@ -15,6 +15,7 @@ export function localization(lng: string) {
 	if (lng === 'ru') return ruRU
 	if (lng === 'tr') return trTR
 	if (lng === 'uz') return uzUZ
+	if (lng === 'ky') return ruRU
 }
 
 export function getCurrentLng(lng: string) {
@@ -22,9 +23,12 @@ export function getCurrentLng(lng: string) {
 	if (lng === 'ru') return 'Русский'
 	if (lng === 'tr') return 'Türkçe'
 	if (lng === 'uz') return 'O‘zbek'
+	if (lng === 'ky') return 'Кыргызча'
 }
 
 export function getReadingTime(content: string) {
+	if (!content) return 1
+	
 	const WPS = 250 / 60
 
 	let images = 0
@@ -149,6 +153,7 @@ export const getTimeLocale = (lng: string) => {
 	if (lng === 'ru') return ru
 	if (lng === 'tr') return tr
 	if (lng === 'uz') return uz
+	if (lng === 'ky') return ru
 }
 
 export const generateNumericId = (): string => {

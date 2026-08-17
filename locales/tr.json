@@ -234,5 +234,18 @@
   "statsRating": "Puan",
 	"underTitle": "Bu bölüm geliştirilme aşamasındadır",
 	"underDescription": "Şu anda bu sayfa üzerinde çalışılmaktadır. Yakında tam veritabanı entegrasyonu ve yeni özellikler eklenecektir.",
-	"temporaryData": "Geçici veriler"
+	"temporaryData": "Geçici veriler",
+	"noBlogsTitle": "Görüntülenecek makale yok",
+	"noBlogsDescription": "Talebinize uygun makale bulunamadı. Farklı bir kategori veya arama terimi deneyin.",
+	"blogCategory1": "Programlama",
+	"blogCategory2": "Kariyer",
+	"blogCategory3": "Dil kursları",
+	"blogCategory4": "Danışmanlık",
+	"blogCategory5": "Iqro Arabia",
+	"blogTag1": "Başlangıç",
+	"blogTag2": "Orta",
+	"blogTag3": "İleri",
+	"blogTag4": "Metodoloji",
+	"blogTag5": "Haberler",
+	"searchBlogsPlaceholder": "ИKonu, makale veya anahtar kelime ara..."
 }

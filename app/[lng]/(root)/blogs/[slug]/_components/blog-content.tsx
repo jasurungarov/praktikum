@@ -1,12 +1,13 @@
 /* eslint-disable tailwindcss/no-custom-classname */
 import ShareBtns from "./share-btns";
-import parse from "html-react-parser";
 
 interface Props {
-  html: string;
+  content: string;
 }
 
-function BlogContent({ html }: Props) {
+function BlogContent({ content }: Props) {
+  const paragraphs = content.split(/\n\s*\n/).filter(Boolean);
+
   return (
     <div className="container mx-auto max-w-6xl">
       <div className="relative mt-10 flex gap-12 max-md:flex-col-reverse">
@@ -17,7 +18,11 @@ function BlogContent({ html }: Props) {
         </aside>
 
         <article className="prose-a:text-gold prose max-w-none flex-1 break-words dark:prose-invert prose-headings:font-space-grotesk prose-headings:font-bold prose-a:no-underline hover:prose-a:underline prose-img:rounded-xl">
-          {parse(html)}
+          {paragraphs.map((paragraph, i) => (
+            <p key={i} className="whitespace-pre-line">
+              {paragraph.trim()}
+            </p>
+          ))}
         </article>
       </div>
     </div>

@@ -1,10 +1,10 @@
-import { IBlog } from "@/types";
+import { IBlogDB } from '@/app.types'
 import { format } from "date-fns";
 import Image from "next/image";
 import Link from "next/link";
 
 interface Props {
-  blogs: IBlog[];
+  blogs: IBlogDB[];
 }
 
 function RelatedPosts({ blogs }: Props) {
@@ -24,7 +24,7 @@ function RelatedPosts({ blogs }: Props) {
             className="group overflow-hidden rounded-2xl border border-white/10 bg-white/[0.03] backdrop-blur-md transition-all duration-300 hover:-translate-y-1 hover:border-amber-400/25">
             <div className="relative aspect-[16/10] overflow-hidden">
               <Image
-                src={blog.image.url}
+                src={blog.coverImage}
                 alt={blog.title}
                 fill
                 sizes="(max-width: 768px) 100vw, 33vw"

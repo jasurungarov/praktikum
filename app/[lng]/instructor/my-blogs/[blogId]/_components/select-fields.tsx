@@ -124,8 +124,8 @@ function Forms({ blog, onToggle }: FormsProps) {
                     </SelectTrigger>
                     <SelectContent>
                       {blogCategory.map((item) => (
-                        <SelectItem key={item} value={item}>
-                          {item}
+                        <SelectItem key={item.name} value={item.name}>
+                          {item.name}
                         </SelectItem>
                       ))}
                     </SelectContent>
@@ -153,8 +153,8 @@ function Forms({ blog, onToggle }: FormsProps) {
                     </SelectTrigger>
                     <SelectContent>
                       {blogTag.map((item) => (
-                        <SelectItem key={item} value={item}>
-                          {item}
+                        <SelectItem key={item.name} value={item.name}>
+                          {item.name}
                         </SelectItem>
                       ))}
                     </SelectContent>

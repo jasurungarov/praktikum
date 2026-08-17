@@ -234,5 +234,18 @@
   "statsRating": "Reyting",
 	"underTitle": "Ushbu boʻlim ishlab chiqilmoqda",
 	"underDescription": "Hozirda ushbu sahifa ustida ishlanmoqda. Tez orada toʻliq maʼlumotlar bazasi va yangi funksiyalar integratsiya qilinadi.",
-	"temporaryData" : "Vaqtinchalik maʼlumotlar"
+	"temporaryData" : "Vaqtinchalik maʼlumotlar",
+	"noBlogsTitle": "Ko'rsatish uchun hech qanday maqola yo'q",
+	"noBlogsDescription": "So'rovingizga mos maqola topilmadi. Boshqa kategoriya yoki qidiruv so'zini sinab ko'ring.",
+	"blogCategory1": "Dasturlash",
+	"blogCategory2": "Karyera",
+	"blogCategory3": "Til kurslari",
+	"blogCategory4": "Konsalting",
+	"blogCategory5": "Iqro Arabia",
+	"blogTag1": "Boshlang'ich",
+	"blogTag2": "O'rta",
+	"blogTag3": "Ilg'or",
+	"blogTag4": "Metodika",
+	"blogTag5": "Yangilik",
+	"searchBlogsPlaceholder": "Mavzu, maqola yoki kalit soʻz boʻyicha qidiring..."
 }

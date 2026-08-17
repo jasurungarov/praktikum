@@ -1,8 +1,8 @@
-import { IBlog } from "@/types";
+import { IBlogDB } from '@/app.types'
 import Image from "next/image";
 
 interface Props {
-  blog: IBlog;
+  blog: IBlogDB;
 }
 
 function CoverImage({ blog }: Props) {
@@ -10,7 +10,7 @@ function CoverImage({ blog }: Props) {
     <div className="container mx-auto max-w-6xl">
       <div className="relative mt-8 overflow-hidden rounded-[28px] border border-white/10">
         <Image
-          src={blog.image.url}
+          src={blog.coverImage}
           alt={blog.title}
           width={1120}
           height={595}

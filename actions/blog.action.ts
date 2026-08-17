@@ -74,7 +74,7 @@ export const getBlogs = async (params: GetAllBlogsParams) => {
     }
 
     const blogs = await Blog.find(query)
-      .select('title description slug category tag coverImage author createdAt')
+      .select('title description content slug category tag coverImage author createdAt')
       .populate({
         path: 'author',
         select: 'fullName picture clerkId',
@@ -111,7 +111,6 @@ export const getBlogBySlug = cache(async (slug: string) => {
   }
 })
 
-// instructor-facing — no `published` filter, so drafts remain editable
 export const getBlogById = async (id: string) => {
   try {
     await connectToDatabase()
@@ -190,8 +189,6 @@ export const incrementBlogViews = async (id: string) => {
     await connectToDatabase()
     await Blog.findByIdAndUpdate(id, { $inc: { views: 1 } })
   } catch (error) {
-    // view count is not critical — fail silently rather than
-    // breaking the page render if this errors
     console.error('Failed to increment blog views', error)
   }
 }

@@ -165,9 +165,9 @@ function BlogFieldsForm() {
                       </SelectTrigger>
                       <SelectContent>
                         {blogCategory.map((item) => (
-                          <SelectItem key={item} value={item}>
-                            {item}
-                          </SelectItem>
+                          <SelectItem key={item.name} value={item.name}>
+														{item.name}
+													</SelectItem>
                         ))}
                       </SelectContent>
                     </Select>
@@ -194,9 +194,9 @@ function BlogFieldsForm() {
                       </SelectTrigger>
                       <SelectContent>
                         {blogTag.map((item) => (
-                          <SelectItem key={item} value={item}>
-                            {item}
-                          </SelectItem>
+                          <SelectItem key={item.name} value={item.name}>
+														{item.name}
+													</SelectItem>
                         ))}
                       </SelectContent>
                     </Select>

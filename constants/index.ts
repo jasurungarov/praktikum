@@ -43,6 +43,7 @@ export const navLinks = [
 export const lngs = [
 	{ route: 'en', label: 'English' },
 	{ route: 'uz', label: "O'zbekcha" },
+	{ route: 'ky', label: 'Кыргызча' },
 	{ route: 'ru', label: 'Русский' },
 	{ route: 'tr', label: 'Türkçe' },
 ]
@@ -235,7 +236,7 @@ export const courseCategory = [
 	'desktop',
 	'game',
 ]
-export const courseLanguage = ['english', 'uzbek', 'russian', 'turkish']
+export const courseLanguage = ['english', 'uzbek', 'kyrgyz', 'russian', 'turkish' ]
 
 export const editorConfig = {
 	height: 150,
@@ -300,18 +301,18 @@ export const adminNavLinks = [
 ]
 
 export const blogCategory = [
-	'dasturlash',
-	'karyera',
-	'til-kurslari',
-	'konsalting',
-	'iqro-arabia',
+	{ label: 'blogCategory1', name: 'dasturlash' },
+	{ label: 'blogCategory2', name: 'karyera' },
+	{ label: 'blogCategory3', name: 'til-kurslari' },
+	{ label: 'blogCategory4', name: 'konsalting' },
+	{ label: 'blogCategory5', name: 'iqro-arabia' },
 ]
  
 export const blogTag = [
-	'boshlangich',
-	"o'rta",
-	'ilg\'or',
-	'metodika',
-	'yangilik',
+	{ label: 'blogTag1', name: 'boshlangich' },
+	{ label: 'blogTag2', name: "o'rta" },
+	{ label: 'blogTag3', name: "ilg'or" },
+	{ label: 'blogTag4', name: 'metodika' },
+	{ label: 'blogTag5', name: 'yangilik' },
 ]
  

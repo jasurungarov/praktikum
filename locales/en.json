@@ -236,5 +236,18 @@
   "statsRating": "Rating",
 	"underTitle": "This section is under development",
 	"underDescription": "We are currently working on this page. Full database integration and new features are coming soon.",
-	"temporaryData": "Temporary data"
+	"temporaryData": "Temporary data",
+	"noBlogsTitle": "No articles to display",
+  "noBlogsDescription": "No articles match your request. Try a different category or search term.",
+	"blogCategory1": "Programming",
+	"blogCategory2": "Career",
+	"blogCategory3": "Language courses",
+	"blogCategory4": "Consulting",
+	"blogCategory5": "Iqro Arabia",
+	"blogTag1": "Beginner",
+	"blogTag2": "Intermediate",
+	"blogTag3": "Advanced",
+	"blogTag4": "Methodology",
+	"blogTag5": "News",
+	"searchBlogsPlaceholder": "Search articles or topics..."
 }

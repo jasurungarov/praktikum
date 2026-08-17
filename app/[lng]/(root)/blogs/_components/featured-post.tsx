@@ -1,11 +1,12 @@
-import { IBlog } from "@/types";
+import { IBlogDB } from "@/app.types";
+import { getReadingTime } from "@/lib/utils";
 import { format } from "date-fns";
-import { CalendarDays, Sparkles } from "lucide-react";
+import { CalendarDays, Clock, Sparkles } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 
 interface Props {
-  blog: IBlog;
+  blog: IBlogDB;
 }
 
 function FeaturedPost({ blog }: Props) {
@@ -15,7 +16,7 @@ function FeaturedPost({ blog }: Props) {
       className="group grid grid-cols-2 gap-8 overflow-hidden rounded-[28px] border border-white/10 bg-white/[0.03] p-3 backdrop-blur-md transition-all duration-300 hover:border-green-500/25 hover:shadow-lg hover:shadow-primary/20 max-md:grid-cols-1">
       <div className="relative aspect-[16/11] overflow-hidden rounded-2xl">
         <Image
-          src={blog.image.url}
+          src={blog.coverImage}
           alt={blog.title}
           fill
           sizes="(max-width: 768px) 100vw, 50vw"
@@ -41,13 +42,13 @@ function FeaturedPost({ blog }: Props) {
         <div className="mt-5 flex flex-wrap items-center gap-x-4 gap-y-2 text-sm text-muted-foreground">
           <div className="flex items-center gap-2">
             <Image
-              src={blog.author.image.url}
-              alt={blog.author.name}
+              src={blog.author.picture}
+              alt={blog.author.fullName}
               width={38}
               height={38}
               className="rounded-full object-cover"
             />
-            {blog.author.name}
+            {blog.author.fullName}
           </div>
           <span className="h-3.5 w-px bg-white/15 max-sm:hidden" />
           <div className="flex items-center gap-1.5">
@@ -55,6 +56,10 @@ function FeaturedPost({ blog }: Props) {
             {format(new Date(blog.createdAt), "MMM dd, yyyy")}
           </div>
           <span className="h-3.5 w-px bg-white/15 max-sm:hidden" />
+          <div className="flex items-center gap-1.5">
+            <Clock className="size-4" />
+            {getReadingTime(blog.content)} daqiqa
+          </div>
         </div>
       </div>
     </Link>

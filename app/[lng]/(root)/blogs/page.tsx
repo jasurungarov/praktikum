@@ -1,8 +1,8 @@
 import TopBar from "@/components/shared/top-bar";
-import UnderDevelopmentBanner from "@/components/shared/under-development-banner";
 import { Metadata } from "next";
-import { mockBlogsList } from "@/constants/mock-blogs";
 import BlogsExplorer from "./_components/blogs-explorer";
+import { SearchParamsProps } from '@/app.types'
+import { getBlogs } from '@/actions/blog.action'
 
 export const metadata: Metadata = {
   title: "Ungarov Academy | Bloglar",
@@ -10,20 +10,28 @@ export const metadata: Metadata = {
     "Bloglarimizda dasturlash, iqro arabia, konsalting xizmati, dizayn, marketing, til kurslari, hamda startup loyihalari va boshqa mavzular haqida maqolalar va yangiliklar.",
 };
 
-// TEMPORARY: reading from mock data until the DB-backed blog
-// action is ready. Swap `mockBlogsList` for the real fetch then.
-async function Page() {
-  const blogs = mockBlogsList;
+async function Page({ searchParams }: SearchParamsProps) {
+  const page = searchParams.page ? +searchParams.page : 1;
+  const category = searchParams.category;
+  const searchQuery = searchParams.q;
+ 
+  const resultJSON = await getBlogs({
+    page,
+    category,
+    searchQuery,
+    pageSize: 6,
+  });
+  const result = JSON.parse(JSON.stringify(resultJSON));
+
+  const showFeatured = page === 1 && !category && !searchQuery;
 
   return (
     
     <>
       <TopBar label="blogs" description="blogsDescription" />
-      <div className="container mx-auto max-w-6xl">
-        <UnderDevelopmentBanner />
-      </div>
+      
       <div className="mt-8">
-        <BlogsExplorer blogs={blogs} />
+        <BlogsExplorer result={result} showFeatured={showFeatured} page={page}/>
       </div>
     </>
   );
