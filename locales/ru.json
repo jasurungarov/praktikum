@@ -248,5 +248,8 @@
 	"blogTag4": "Методика",
 	"blogTag5": "Новости",
 	"searchBlogsPlaceholder": "Искать статьи или темы...",
-	"latestArticle": "Последняя статья"
+	"latestArticle": "Последняя статья",
+	"minRead": "мин. чтения",
+  "aboutAuthor": "Об авторе",
+  "relatedArticles": "Похожие статьи"
 }

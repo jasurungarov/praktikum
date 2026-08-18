@@ -41,7 +41,7 @@ function Footer() {
               <div className="flex items-center space-x-3">
                 <TbBrandTelegram size={20} />
                 <a
-                  className="text-sm hover:text-blue-500 hover:underline dark:hover:text-blue-300"
+                  className="text-sm hover:text-green-500 hover:underline dark:hover:text-green-500"
                   href="https://t.me/ungarovacademy"
                   target="_blank"
                   rel="noopener noreferrer">
@@ -52,7 +52,7 @@ function Footer() {
               <div className="flex items-center space-x-3">
                 <FaInstagram size={20} />
                 <a
-                  className="text-sm hover:text-blue-500 hover:underline dark:hover:text-blue-300"
+                  className="text-sm hover:text-green-500 hover:underline dark:hover:text-green-500"
                   href="https://instagram.com/ungarov.academy"
                   target="_blank"
                   rel="noopener noreferrer">
@@ -63,9 +63,9 @@ function Footer() {
               <div className="flex items-center space-x-3">
                 <Mail size={20} />
                 <a
-                  className="text-sm hover:text-blue-500 hover:underline dark:hover:text-blue-300"
-                  href="mailto:info@ungarov.ac">
-                  info@ungarov.ac
+                  className="text-sm hover:text-green-500 hover:underline dark:hover:text-green-500"
+                  href="mailto:ungarov.academy@gmail.com">
+                  ungarov.academy@gmail.com
                 </a>
               </div>
 
@@ -73,16 +73,16 @@ function Footer() {
                 <PhoneCall size={20} />
                 <div className="flex flex-col space-y-1">
                   <a
-                    className="text-sm hover:text-blue-500 hover:underline dark:hover:text-blue-300"
-                    href="tel:+998900000000">
-                    +998 (90) 000-00-00
+                    className="text-sm hover:text-green-500 hover:underline dark:hover:text-green-500"
+                    href="tel:+996707067776">
+                    +996 (707) 067-776
                   </a>
                   <Separator className="dark:bg-gray-500" />
-                  <a
+                  {/* <a
                     className="text-sm hover:text-blue-500 hover:underline dark:hover:text-blue-300"
                     href="tel:+31220777777">
                     +31 220 777 777
-                  </a>
+                  </a> */}
                 </div>
               </div>
 

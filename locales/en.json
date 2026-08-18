@@ -250,5 +250,8 @@
   "blogTag4": "Methodology",
   "blogTag5": "News",
   "searchBlogsPlaceholder": "Search articles or topics...",
-  "latestArticle": "Latest article"
+  "latestArticle": "Latest article",
+  "minRead": "min read",
+  "aboutAuthor": "About the author",
+  "relatedArticles": "Related articles"
 }

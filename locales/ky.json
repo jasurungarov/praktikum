@@ -248,5 +248,8 @@
 	"blogTag4": "Методика",
 	"blogTag5": "Жаңылык",
 	"searchBlogsPlaceholder": "Тема, макала же ачкыч сөз боюнча издеңиз...",
-	"latestArticle": "Акыркы макала"
+	"latestArticle": "Акыркы макала",
+	"minRead": "мүнөт окуу",
+  "aboutAuthor": "Автор жөнүндө",
+  "relatedArticles": "Окшош макалалар"
 }

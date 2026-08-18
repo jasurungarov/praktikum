@@ -1,4 +1,7 @@
+"use client";
+
 import { IBlogDB } from '@/app.types'
+import useTranslate from '@/hooks/use-translate'
 import { format } from "date-fns";
 import Image from "next/image";
 import Link from "next/link";
@@ -8,12 +11,14 @@ interface Props {
 }
 
 function RelatedPosts({ blogs }: Props) {
+  const t = useTranslate();
+
   if (!blogs.length) return null;
 
   return (
     <div className="container mx-auto my-20 max-w-6xl">
       <h2 className="font-space-grotesk text-2xl font-bold">
-        O&apos;xshash maqolalar
+        {t("relatedArticles")}
       </h2>
 
       <div className="mt-6 grid grid-cols-3 gap-5 max-md:grid-cols-2 max-sm:grid-cols-1">

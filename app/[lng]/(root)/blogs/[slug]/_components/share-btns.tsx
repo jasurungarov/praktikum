@@ -25,7 +25,7 @@ function ShareBtns() {
   };
 
   return (
-    <div className="flex flex-col items-center gap-2 md:items-start">
+    <div className="mt-6 flex flex-col items-center gap-2 md:items-start">
       <p className="mb-1 text-xs font-medium uppercase tracking-wider text-muted-foreground">
         {t("share")} 
       </p>

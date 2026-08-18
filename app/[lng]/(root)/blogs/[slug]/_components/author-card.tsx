@@ -1,11 +1,16 @@
+"use client";
+
 import { IUser } from '@/app.types'
 import Image from "next/image";
+import useTranslate from '@/hooks/use-translate'
 
 interface Props {
   author: IUser;
 }
 
 function AuthorCard({ author }: Props) {
+  const t = useTranslate();
+
   return (
     <div className="container mx-auto max-w-6xl">
       <div className="mt-16 flex items-center gap-6 rounded-[24px] border border-white/10 bg-white/[0.03] p-6 backdrop-blur-md max-md:flex-col max-md:text-center">
@@ -18,7 +23,7 @@ function AuthorCard({ author }: Props) {
         />
         <div className="flex-1">
           <p className="text-xs font-medium uppercase tracking-wider text-amber-400">
-            Muallif haqida
+            {t("aboutAuthor")}
           </p>
           <h3 className="mt-1 font-space-grotesk text-2xl font-bold">
             {author.fullName}

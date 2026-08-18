@@ -248,5 +248,8 @@
 	"blogTag4": "Metodika",
 	"blogTag5": "Yangilik",
 	"searchBlogsPlaceholder": "Mavzu, maqola yoki kalit soʻz boʻyicha qidiring...",
-	"latestArticle": "Eng so'nggi maqola"
+	"latestArticle": "Eng so'nggi maqola",
+	"minRead": "daqiqa o'qish",
+  "aboutAuthor": "Muallif haqida",
+  "relatedArticles": "O'xshash maqolalar"
 }

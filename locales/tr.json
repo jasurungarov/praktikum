@@ -248,5 +248,8 @@
 	"blogTag4": "Metodoloji",
 	"blogTag5": "Haberler",
 	"searchBlogsPlaceholder": "Konu, makale veya anahtar kelime ara...",
-	"latestArticle": "En son makale"
+	"latestArticle": "En son makale",
+  "minRead": "dk okuma",
+  "aboutAuthor": "Yazar hakkında",
+  "relatedArticles": "Benzer makaleler"
 }

@@ -31,7 +31,7 @@ export const metadata: Metadata = {
   description:
     "Ungarov Academy — dasturlash (IT), chet tillari, arab tili (Iqro Arabia) va xalqaro ta'lim bo'yicha konsalting xizmatlarini bitta joyda jamlagan zamonaviy ta'lim platformasi. Amaliyotga asoslangan kurslar, professional ustozlar va real natija.",
   authors: [{ name: 'Ungarov Academy', url: 'https://ungarov.academy' }],
-  icons: { icon: "/logo.svg" },
+  icons: { icon: "/ungarov_logo.svg" },
   openGraph: {
     title: 'Ungarov Academy | IT, Til va Xalqaro Ta`lim Ekotizimi',
     description:
@@ -42,7 +42,7 @@ export const metadata: Metadata = {
     images: '/og-image.png',
     countryName: 'Uzbekistan',
     siteName: 'Ungarov Academy',
-    emails: 'info@ungarov.academy',
+    emails: 'ungarov.academy@gamil.com',
   },
   keywords:
     "Ungarov Academy, Ungarov, dasturlash kurslari, IT kurslari, frontend kurs, backend kurs, Next.js kurs, dasturlash oʻrganish, til kurslari, arab tili kursi, Iqro Arabia, Qurʼon oʻqishni oʻrganish, xalqaro taʼlim konsalting, chet elda oʻqish, universitet uchun hujjat tarjimasi, Umm Al-Qura universiteti, Toshkentda IT kurslari, Oʻzbekistonda dasturlash taʼlimi",

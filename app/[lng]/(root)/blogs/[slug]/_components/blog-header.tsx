@@ -62,7 +62,7 @@ function BlogHeader({ blog }: Props) {
 
         <div className="flex items-center gap-2 text-sm text-muted-foreground">
           <Clock className="size-4" />
-          {getReadingTime(blog.content)} daqiqa oqish
+          {getReadingTime(blog.content)} {t("minRead")}
         </div>
       </div>
     </div>

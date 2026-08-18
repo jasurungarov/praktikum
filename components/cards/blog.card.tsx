@@ -44,7 +44,7 @@ function BlogCard({ blog }: BlogCardProps) {
         <div className="mt-1 flex items-center gap-2 border-t border-white/10 pt-3 text-xs text-muted-foreground">
           <div className="flex items-center gap-1.5">
             <Clock className="size-3.5" />
-            {getReadingTime(blog.content)} daqiqa
+            {getReadingTime(blog.content)} {t("minutes")}
           </div>
           <span className="h-3 w-px bg-white/15" />
           <div className="flex items-center gap-1.5">

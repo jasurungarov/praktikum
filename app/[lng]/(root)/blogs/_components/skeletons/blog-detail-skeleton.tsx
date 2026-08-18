@@ -4,9 +4,9 @@ function BlogDetailSkeleton() {
   return (
     <div className="pb-10">
       <div className="container mx-auto max-w-5xl">
-        <Skeleton className="mt-8 aspect-[16/9] w-full rounded-[28px] bg-white/5" />
+        <Skeleton className="mt-28 aspect-[16/9] w-full rounded-[28px] bg-white/5" />
 
-        <div className="container mx-auto max-w-6xl pt-28">
+        <div className="container mx-auto max-w-6xl pt-8">
           <div className="flex flex-wrap items-center gap-3">
             <Skeleton className="h-7 w-24 rounded-full bg-white/5" />
             <Skeleton className="h-7 w-20 rounded-full bg-white/5" />
